@@ -107,6 +107,7 @@ public class TelegramBotController extends TelegramLongPollingBot {
         }
         try {
             execute(new SendMessage(query.getFrom().getId().toString(), answer));
+
         } catch (TelegramApiException e) {
             log.error(e);
         }
