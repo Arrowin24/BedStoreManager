@@ -24,11 +24,22 @@ public class WorkerServiceImpl implements WorkerService {
         this.workerRepository = workerRepository;
     }
 
-    public void startCreateWorkerStep(long id) {
-        creatingSteps.put(id, new WorkAnswer(0, new Worker(id, "user", "user", "worker")));
+    @Override
+    public int getStep(long id) {
+        return creatingSteps.get(id).getStepNum();
     }
 
-    public boolean addWorkerNameStep(long id, String name) {
+    @Override
+    public boolean isCreating(long id) {
+        return creatingSteps.containsKey(id);
+    }
+
+    public String startCreateWorkerStep(long id) {
+        creatingSteps.put(id, new WorkAnswer(0, new Worker(id, "user", "user", "worker")));
+        return "Введите Имя";
+    }
+
+    public String addWorkerNameStep(long id, String name) {
         if (!creatingSteps.containsKey(id)) {
             throw new RuntimeException("Что-то не так с добавлением имени, вернитесь обратно");
         }
@@ -36,13 +47,13 @@ public class WorkerServiceImpl implements WorkerService {
             Worker worker = creatingSteps.get(id).getWorker();
             worker.setName(name);
             creatingSteps.put(id, new WorkAnswer(1, worker));
-            return true;
+            return "Введите пароль:";
         }
-        return false;
+        return "Произошла ошибочка";
     }
 
 
-    public boolean addWorkerPasswordStep(long id, String password) {
+    public String addWorkerPasswordStep(long id, String password) {
         if (!creatingSteps.containsKey(id)) {
             throw new RuntimeException("Что-то не так с шагом добавления паспорта, вернитесь обратно");
         }
@@ -50,12 +61,12 @@ public class WorkerServiceImpl implements WorkerService {
             Worker worker = creatingSteps.get(id).getWorker();
             worker.setPassword(password);
             creatingSteps.put(id, new WorkAnswer(2, worker));
-            return true;
+            return "Введите должность";
         }
-        return false;
+        return "Ошибка";
     }
 
-    public boolean addWorkerPositionStep(long id, String position) {
+    public String addWorkerPositionStep(long id, String position) {
         if (!creatingSteps.containsKey(id)) {
             throw new RuntimeException("Что-то не так с шагом добавления должности, вернитесь обратно");
         }
@@ -63,9 +74,9 @@ public class WorkerServiceImpl implements WorkerService {
             Worker worker = creatingSteps.get(id).getWorker();
             worker.setPosition(position);
             creatingSteps.put(id, new WorkAnswer(3, worker));
-            return true;
+            return "Позиция принята!";
         }
-        return false;
+        return "Ошибка";
     }
 
     public void finishWorkerSteps(long id) {
@@ -77,26 +88,27 @@ public class WorkerServiceImpl implements WorkerService {
         }
     }
 
-    public int createWorkerBySteps(long id, int step, String answer) {
+    @Override
+    public String createWorkerBySteps(long id, int step, String answer) {
         switch (step) {
-            case -1:
-                startCreateWorkerStep(id);
-                return 0;
-            case 0:
-                addWorkerNameStep(id, answer);
-                return 1;
-            case 1:
-                addWorkerPasswordStep(id, answer);
-                return 2;
-            case 2:
-                addWorkerPositionStep(id, answer);
-                return 3;
-            case 3:
+            case -1 -> {
+                return startCreateWorkerStep(id);
+            }
+            case 0 -> {
+                return addWorkerNameStep(id, answer);
+            }
+            case 1 -> {
+                return addWorkerPasswordStep(id, answer);
+            }
+            case 2 -> {
+                String positionAnswer = addWorkerPositionStep(id, answer);
                 create(creatingSteps.get(id).getWorker());
                 finishWorkerSteps(id);
-                return 4;
-            default:
-                throw new RuntimeException("Что то не так");
+                return positionAnswer + "\n" + "Все успещно создано";
+            }
+
+
+            default -> throw new RuntimeException("Что то не так");
         }
     }
 

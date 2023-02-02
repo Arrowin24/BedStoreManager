@@ -10,7 +10,8 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
-import ru.arrowin.bedstoremanager.models.Worker;
+import ru.arrowin.bedstoremanager.models.Furniture;
+import ru.arrowin.bedstoremanager.services.FurnitureService;
 import ru.arrowin.bedstoremanager.services.WorkerService;
 
 import java.util.ArrayList;
@@ -22,10 +23,12 @@ public class TelegramBotController extends TelegramLongPollingBot {
     @Value("${telegram.bot.name}") private String botName;
     @Value("${telegram.bot.token}") private String botToken;
 
-    private WorkerService workerService;
+    private final WorkerService workerService;
+    private final FurnitureService furnitureService;
 
-    public TelegramBotController(WorkerService workerService) {
+    public TelegramBotController(WorkerService workerService, FurnitureService furnitureService) {
         this.workerService = workerService;
+        this.furnitureService = furnitureService;
     }
 
     @Override
@@ -45,38 +48,46 @@ public class TelegramBotController extends TelegramLongPollingBot {
             log.debug(originalMessage.getText());
             log.debug(originalMessage.getFrom().toString());
             if (update.getMessage().hasText()) {
-                if (originalMessage.getText().contains("add")) {
-                    Long id = originalMessage.getFrom().getId();
-                    String name = originalMessage.getFrom().getUserName() + " " + originalMessage.getFrom().getFirstName();
-                    workerService.create(new Worker(id, name, "123", "Работник"));
-                    sendMessage(
-                            new SendMessage(originalMessage.getChatId().toString(), workerService.read(id).toString()));
-                }
-                if (originalMessage.getText().toLowerCase().contains("клавиат")) {
+                long id = originalMessage.getFrom().getId();
+                if (workerService.isCreating(id)) {
+                    String answer = originalMessage.getText();
+                    sendMessage(new SendMessage(originalMessage.getChatId().toString(),
+                                                workerService.createWorkerBySteps(id, workerService.getStep(id),
+                                                                                  answer)));
+                } else if (originalMessage.getText().toLowerCase().contains("клавиат")) {
                     sendInlineKeyBoardMessage(originalMessage.getChatId());
-                }
+            }
             }
         } else if (update.hasCallbackQuery()) {
             CallbackQuery query = update.getCallbackQuery();
             keyBoardHandling(query);
         }
+
     }
 
     public void sendInlineKeyBoardMessage(long chanId) {
         InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
         InlineKeyboardButton button1 = new InlineKeyboardButton();
         button1.setText("Добавление нового сотрудника");
-        button1.setCallbackData("add");
+        button1.setCallbackData("/add");
         InlineKeyboardButton button2 = new InlineKeyboardButton();
         button2.setText("Вывод всех сотрудников");
-        button2.setCallbackData("allWorker");
+        button2.setCallbackData("/allWorker");
+        InlineKeyboardButton button3 = new InlineKeyboardButton();
+        button3.setText("Добавить новую мебель");
+        button3.setCallbackData("/addFurniture");
+
+
         List<InlineKeyboardButton> keyboardButtonsRow1 = new ArrayList<>();
         List<InlineKeyboardButton> keyboardButtonsRow2 = new ArrayList<>();
+        List<InlineKeyboardButton> keyboardButtonsRow3 = new ArrayList<>();
         keyboardButtonsRow1.add(button1);
         keyboardButtonsRow2.add(button2);
+        keyboardButtonsRow3.add(button3);
         List<List<InlineKeyboardButton>> buttonsColons = new ArrayList<>();
         buttonsColons.add(keyboardButtonsRow1);
         buttonsColons.add(keyboardButtonsRow2);
+        buttonsColons.add(keyboardButtonsRow3);
         inlineKeyboardMarkup.setKeyboard(buttonsColons);
         SendMessage message = new SendMessage();
         message.setChatId(chanId);
@@ -90,20 +101,22 @@ public class TelegramBotController extends TelegramLongPollingBot {
     }
 
     public void keyBoardHandling(CallbackQuery query) {
-        String answer ="";
+        String answer;
         switch (query.getData()) {
-            case "allWorker":
-                answer = workerService.readAll().toString();
-                break;
-            case "add":
+            case "/allWorker" -> answer = workerService.readAll().toString();
+            case "/add" -> {
                 Long id = query.getFrom().getId();
-                String name = query.getFrom().getUserName() + " " + query.getFrom().getFirstName();
-                workerService.create(new Worker(id, name, "123", "Работник"));
-                answer = workerService.read(query.getFrom().getId()).toString();
-                break;
-            default:
+                answer = workerService.createWorkerBySteps(id, -1, " ");
+            }
+            case "/addFurniture" ->{
+                furnitureService.add(new Furniture("Шкаф", 500));
+                answer = furnitureService.readAll().toString();
+
+            }
+            default -> {
                 answer = "Что-то пошло не так";
                 log.debug(query.getData());
+            }
         }
         try {
             execute(new SendMessage(query.getFrom().getId().toString(), answer));
