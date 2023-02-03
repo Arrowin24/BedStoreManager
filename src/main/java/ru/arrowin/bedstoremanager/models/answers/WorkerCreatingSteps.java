@@ -8,7 +8,7 @@ import ru.arrowin.bedstoremanager.models.Worker;
 @AllArgsConstructor
 @Getter
 @Setter
-public class WorkAnswer {
+public class WorkerCreatingSteps {
     private int stepNum;
     private Worker worker;
 

@@ -2,6 +2,7 @@ package ru.arrowin.bedstoremanager.controller;
 
 import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -18,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
+@Component
 @Log4j
 public class TelegramBotController extends TelegramLongPollingBot {
     @Value("${telegram.bot.name}") private String botName;

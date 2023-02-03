@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.arrowin.bedstoremanager.models.Worker;
 
-import ru.arrowin.bedstoremanager.models.answers.WorkAnswer;
+import ru.arrowin.bedstoremanager.models.answers.WorkerCreatingSteps;
 import ru.arrowin.bedstoremanager.repository.WorkerRepository;
 import ru.arrowin.bedstoremanager.services.WorkerService;
 
@@ -17,7 +17,7 @@ import java.util.Map;
 @Service
 public class WorkerServiceImpl implements WorkerService {
     private final WorkerRepository workerRepository;
-    private final Map<Long, WorkAnswer> creatingSteps = new HashMap<>();
+    private final Map<Long, WorkerCreatingSteps> creatingSteps = new HashMap<>();
 
     @Autowired
     public WorkerServiceImpl(WorkerRepository workerRepository) {
@@ -35,7 +35,7 @@ public class WorkerServiceImpl implements WorkerService {
     }
 
     public String startCreateWorkerStep(long id) {
-        creatingSteps.put(id, new WorkAnswer(0, new Worker(id, "user", "user", "worker")));
+        creatingSteps.put(id, new WorkerCreatingSteps(0, new Worker(id, "user", "user", "worker")));
         return "Введите Имя";
     }
 
@@ -46,7 +46,7 @@ public class WorkerServiceImpl implements WorkerService {
         if (creatingSteps.get(id).getStepNum() == 0) {
             Worker worker = creatingSteps.get(id).getWorker();
             worker.setName(name);
-            creatingSteps.put(id, new WorkAnswer(1, worker));
+            creatingSteps.put(id, new WorkerCreatingSteps(1, worker));
             return "Введите пароль:";
         }
         return "Произошла ошибочка";
@@ -60,7 +60,7 @@ public class WorkerServiceImpl implements WorkerService {
         if (creatingSteps.get(id).getStepNum() == 1) {
             Worker worker = creatingSteps.get(id).getWorker();
             worker.setPassword(password);
-            creatingSteps.put(id, new WorkAnswer(2, worker));
+            creatingSteps.put(id, new WorkerCreatingSteps(2, worker));
             return "Введите должность";
         }
         return "Ошибка";
@@ -73,7 +73,7 @@ public class WorkerServiceImpl implements WorkerService {
         if (creatingSteps.get(id).getStepNum() == 2) {
             Worker worker = creatingSteps.get(id).getWorker();
             worker.setPosition(position);
-            creatingSteps.put(id, new WorkAnswer(3, worker));
+            creatingSteps.put(id, new WorkerCreatingSteps(3, worker));
             return "Позиция принята!";
         }
         return "Ошибка";

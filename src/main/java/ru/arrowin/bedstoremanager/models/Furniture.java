@@ -10,7 +10,6 @@ import java.util.Objects;
 @Getter
 @Setter
 @ToString
-@RequiredArgsConstructor
 @NoArgsConstructor
 @AllArgsConstructor
 public class Furniture {
@@ -21,10 +20,12 @@ public class Furniture {
     @Column(name = "name") private String name;
     @Column(name = "cost") private double cost;
 
+
     public Furniture(String name, double cost) {
         this.name = name;
         this.cost = cost;
     }
+
 
     @Override
     public boolean equals(Object o) {
