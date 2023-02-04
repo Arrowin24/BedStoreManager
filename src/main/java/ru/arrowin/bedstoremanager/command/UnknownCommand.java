@@ -1,5 +1,6 @@
 package ru.arrowin.bedstoremanager.command;
 
+import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import ru.arrowin.bedstoremanager.services.SendBotMessageService;
 
@@ -14,6 +15,9 @@ public class UnknownCommand implements Command {
 
     @Override
     public void execute(Update update) {
-
+        SendMessage message = new SendMessage();
+        message.setText("Такой команды нет");
+        message.setChatId(update.getMessage().getChatId());
+        sendBotMessageService.sendMessage(message);
     }
 }

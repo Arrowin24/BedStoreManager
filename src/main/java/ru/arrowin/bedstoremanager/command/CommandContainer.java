@@ -7,15 +7,17 @@ import java.util.Map;
 
 public class CommandContainer {
     private final Map<String, Command> commandMap = new HashMap<>();
-  //  private final Command unknownCommand;
+    private final Command unknownCommand;
 
     public CommandContainer(SendBotMessageService sendBotMessageService) {
         commandMap.put(CommandName.START.getCommandName(), new StartCommand(sendBotMessageService));
         commandMap.put(CommandName.HELP.getCommandName(), new HelpCommand(sendBotMessageService));
 
+
+        unknownCommand = new UnknownCommand(sendBotMessageService);
     }
 
-   /* public Command retrieveCommand(String commandIdentifier) {
-        return commandMap.getOrDefault();
-    }*/
+    public Command retrieveCommand(String commandIdentifier) {
+        return commandMap.getOrDefault(commandIdentifier, unknownCommand);
+    }
 }

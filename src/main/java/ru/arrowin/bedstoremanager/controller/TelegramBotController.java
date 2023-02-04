@@ -11,9 +11,11 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+import ru.arrowin.bedstoremanager.command.CommandContainer;
 import ru.arrowin.bedstoremanager.models.Furniture;
 import ru.arrowin.bedstoremanager.services.FurnitureService;
 import ru.arrowin.bedstoremanager.services.WorkerService;
+import ru.arrowin.bedstoremanager.services.imp.SendBotMessageServiceImpl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,15 +24,20 @@ import java.util.List;
 @Component
 @Log4j
 public class TelegramBotController extends TelegramLongPollingBot {
+
+    public static String COMMAND_PREFIX = "/";
     @Value("${telegram.bot.name}") private String botName;
     @Value("${telegram.bot.token}") private String botToken;
 
     private final WorkerService workerService;
     private final FurnitureService furnitureService;
 
+    private final CommandContainer commandContainer;
+
     public TelegramBotController(WorkerService workerService, FurnitureService furnitureService) {
         this.workerService = workerService;
         this.furnitureService = furnitureService;
+        this.commandContainer = new CommandContainer(new SendBotMessageServiceImpl(this));
     }
 
     @Override
@@ -44,6 +51,29 @@ public class TelegramBotController extends TelegramLongPollingBot {
     }
 
     @Override
+    public void onUpdateReceived(Update update) {
+        if (update.hasMessage()) {
+            if (update.getMessage().hasText()) {
+                Long id = update.getMessage().getChatId();
+                String message = update.getMessage().getText();
+                if (message.startsWith(COMMAND_PREFIX)) {
+                    commandContainer.retrieveCommand(message).execute(update);
+                } else if (workerService.isCreating(id)) {
+                    sendMessage(new SendMessage(id.toString(),
+                                                workerService.createWorkerBySteps(id, workerService.getStep(id),
+                                                                                  message)));
+                }
+            }
+        }
+        if (update.hasCallbackQuery()) {
+            String message = update.getCallbackQuery().getData();
+            if (message.startsWith(COMMAND_PREFIX)) {
+                commandContainer.retrieveCommand(message).execute(update);
+            }
+        }
+    }
+
+/*   @Override
     public void onUpdateReceived(Update update) {
         if (update.hasMessage()) {
             var originalMessage = update.getMessage();
@@ -64,8 +94,7 @@ public class TelegramBotController extends TelegramLongPollingBot {
             CallbackQuery query = update.getCallbackQuery();
             keyBoardHandling(query);
         }
-
-    }
+    }*/
 
     public void sendInlineKeyBoardMessage(long chanId) {
         InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
@@ -108,7 +137,7 @@ public class TelegramBotController extends TelegramLongPollingBot {
                 Long id = query.getFrom().getId();
                 answer = workerService.createWorkerBySteps(id, -1, " ");
             }
-            case "/addFurniture" ->{
+            case "/addFurniture" -> {
                 furnitureService.add(new Furniture("Шкаф", 500));
                 answer = furnitureService.readAll().toString();
 
