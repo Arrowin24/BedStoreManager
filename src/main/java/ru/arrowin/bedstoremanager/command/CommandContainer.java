@@ -11,6 +11,7 @@ public class CommandContainer {
 
     public CommandContainer(SendBotMessageService sendBotMessageService) {
         commandMap.put(CommandName.START.getCommandName(), new StartCommand(sendBotMessageService));
+        commandMap.put(CommandName.HELP.getCommandName(), new HelpCommand(sendBotMessageService));
 
     }
 

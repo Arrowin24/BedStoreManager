@@ -25,7 +25,7 @@ public class StartCommand implements Command {
         SendMessage message = new SendMessage();
         message.setChatId(update.getMessage().getChatId());
         message.setText(START_MESSAGE);
-        message.setReplyMarkup(new StartKeyBoard().getKeyBoard());//Добавить клавиатуру стартового меню
+        message.setReplyMarkup(new StartKeyBoard().getKeyBoard());
         sendBotMessageService.sendMessage(message);
     }
 }
