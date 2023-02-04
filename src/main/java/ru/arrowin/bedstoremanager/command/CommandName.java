@@ -9,7 +9,11 @@ public enum CommandName {
     START("/start"),
     HELP("/help"),
     CREATE_WORKER("/newWorker"),
-    CREATE_FURNITURE("/newFurniture")
+    LOGIN("/login"),
+    CREATE_FURNITURE("/newFurniture"),
+    ADD_FURNITURE("/addFurniture"),
+    GET_FURNITURE_TODAY("/getFurnitureToday"),
+    GET_SALARY_TODAY("/getSalaryToday")
     ;
     private final String commandName;
 }

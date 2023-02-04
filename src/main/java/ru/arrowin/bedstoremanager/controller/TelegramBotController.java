@@ -78,8 +78,6 @@ public class TelegramBotController extends TelegramLongPollingBot {
         InlineKeyboardButton button3 = new InlineKeyboardButton();
         button3.setText("Добавить новую мебель");
         button3.setCallbackData("/addFurniture");
-
-
         List<InlineKeyboardButton> keyboardButtonsRow1 = new ArrayList<>();
         List<InlineKeyboardButton> keyboardButtonsRow2 = new ArrayList<>();
         List<InlineKeyboardButton> keyboardButtonsRow3 = new ArrayList<>();
