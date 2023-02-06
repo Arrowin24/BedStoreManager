@@ -37,7 +37,7 @@ public class TelegramBotController extends TelegramLongPollingBot {
     public TelegramBotController(WorkerService workerService, FurnitureService furnitureService) {
         this.workerService = workerService;
         this.furnitureService = furnitureService;
-        this.commandContainer = new CommandContainer(new SendBotMessageServiceImpl(this));
+        this.commandContainer = new CommandContainer(new SendBotMessageServiceImpl(this), workerService);
     }
 
     @Override
@@ -53,16 +53,13 @@ public class TelegramBotController extends TelegramLongPollingBot {
     @Override
     public void onUpdateReceived(Update update) {
         if (update.hasMessage()) {
-            if (update.getMessage().hasText()) {
-                Long id = update.getMessage().getChatId();
-                String message = update.getMessage().getText();
-                if (message.startsWith(COMMAND_PREFIX)) {
-                    commandContainer.retrieveCommand(message).execute(update);
-                } else if (workerService.isCreating(id)) {
-                    sendMessage(new SendMessage(id.toString(),
-                                                workerService.createWorkerBySteps(id, workerService.getStep(id),
-                                                                                  message)));
-                }
+            Long id = update.getMessage().getChatId();
+            String message = update.getMessage().getText();
+            if (message.startsWith(COMMAND_PREFIX)) {
+                commandContainer.retrieveCommand(message).execute(update);
+            } else if (workerService.isCreating(id)) {
+                sendMessage(new SendMessage(id.toString(),
+                                            workerService.createWorkerBySteps(id, workerService.getStep(id), message)));
             }
         }
         if (update.hasCallbackQuery()) {

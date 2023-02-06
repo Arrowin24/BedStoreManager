@@ -23,7 +23,7 @@ public class StartCommand implements Command {
     @Override
     public void execute(Update update) {
         SendMessage message = new SendMessage();
-        message.setChatId(update.getMessage().getChatId());
+        message.setChatId(getId(update));
         message.setText(START_MESSAGE);
         message.setReplyMarkup(new StartKeyBoard().getKeyBoard());
         sendBotMessageService.sendMessage(message);

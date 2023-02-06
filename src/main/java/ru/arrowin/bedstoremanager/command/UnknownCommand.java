@@ -17,7 +17,7 @@ public class UnknownCommand implements Command {
     public void execute(Update update) {
         SendMessage message = new SendMessage();
         message.setText("Такой команды нет");
-        message.setChatId(update.getMessage().getChatId());
+        message.setChatId(getId(update));
         sendBotMessageService.sendMessage(message);
     }
 }

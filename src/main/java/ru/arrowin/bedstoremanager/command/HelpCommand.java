@@ -18,7 +18,7 @@ public class HelpCommand implements Command {
     @Override
     public void execute(Update update) {
         SendMessage message = new SendMessage();
-        message.setChatId(update.getMessage().getChatId());
+        message.setChatId(getId(update));
         message.setText(HELP_MESSAGE);
         message.setReplyMarkup(new WorkerKeyBoard().getKeyBoard());
         sendBotMessageService.sendMessage(message);

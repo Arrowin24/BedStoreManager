@@ -1,5 +1,6 @@
 package ru.arrowin.bedstoremanager.command;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import ru.arrowin.bedstoremanager.services.SendBotMessageService;
@@ -17,7 +18,7 @@ public class CreateWorkerCommand implements Command {
 
     @Override
     public void execute(Update update) {
-        long id = update.getMessage().getFrom().getId();
+        long id = getId(update);
         String request = workerService.createWorkerBySteps(id,-1," ");
         SendMessage message = new SendMessage();
         message.setChatId(id);

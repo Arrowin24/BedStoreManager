@@ -1,8 +1,8 @@
 package ru.arrowin.bedstoremanager.services;
-
 import ru.arrowin.bedstoremanager.models.Worker;
 
 import java.util.List;
+
 
 public interface WorkerService {
     int getStep(long id);
