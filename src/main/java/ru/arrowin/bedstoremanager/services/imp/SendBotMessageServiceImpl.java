@@ -3,6 +3,7 @@ package ru.arrowin.bedstoremanager.services.imp;
 import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
@@ -15,7 +16,7 @@ public class SendBotMessageServiceImpl implements SendBotMessageService {
     private final TelegramBotController telegramBot;
 
     @Autowired
-    public SendBotMessageServiceImpl(TelegramBotController telegramBot) {
+    public SendBotMessageServiceImpl(@Lazy TelegramBotController telegramBot) {
         this.telegramBot = telegramBot;
     }
 

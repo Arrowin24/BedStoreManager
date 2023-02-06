@@ -1,12 +1,29 @@
 package ru.arrowin.bedstoremanager.step;
 
 
+import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+import org.telegram.telegrambots.meta.api.objects.Update;
+import ru.arrowin.bedstoremanager.services.SendBotMessageService;
 
+@Component
 public class UnknownStep extends Step {
-    @Override
-    public SendMessage doStep(StepName step) {
+    public UnknownStep(StepsContainer container, SendBotMessageService sendBotMessageService)
+    {
+        super(container, sendBotMessageService);
+    }
 
-        return null;
+    @Override
+    public void startStep(Update update) {
+
+    }
+
+    @Override
+    public void doStep(Update update) {
+        long id = update.getMessage().getChatId();
+        SendMessage message = new SendMessage();
+        message.setChatId(id);
+        message.setText("Моя тебя не понимать");
+        getSendBotMessageService().sendMessage(message);
     }
 }

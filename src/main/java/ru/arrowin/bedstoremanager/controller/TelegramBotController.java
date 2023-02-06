@@ -5,20 +5,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
-import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
-import org.telegram.telegrambots.meta.api.objects.CallbackQuery;
 import org.telegram.telegrambots.meta.api.objects.Update;
-import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
-import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
-import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import ru.arrowin.bedstoremanager.command.CommandContainer;
-import ru.arrowin.bedstoremanager.models.Furniture;
-import ru.arrowin.bedstoremanager.services.FurnitureService;
-import ru.arrowin.bedstoremanager.services.WorkerService;
-import ru.arrowin.bedstoremanager.services.imp.SendBotMessageServiceImpl;
+import ru.arrowin.bedstoremanager.step.StepsContainer;
 
-import java.util.ArrayList;
-import java.util.List;
 
 @Controller
 @Component
@@ -29,15 +19,13 @@ public class TelegramBotController extends TelegramLongPollingBot {
     @Value("${telegram.bot.name}") private String botName;
     @Value("${telegram.bot.token}") private String botToken;
 
-    private final WorkerService workerService;
-    private final FurnitureService furnitureService;
-
     private final CommandContainer commandContainer;
+    private final StepsContainer stepsContainer;
 
-    public TelegramBotController(WorkerService workerService, FurnitureService furnitureService) {
-        this.workerService = workerService;
-        this.furnitureService = furnitureService;
-        this.commandContainer = new CommandContainer(new SendBotMessageServiceImpl(this), workerService);
+
+    public TelegramBotController(CommandContainer commandContainer, StepsContainer stepsContainer) {
+        this.commandContainer = commandContainer;
+        this.stepsContainer = stepsContainer;
     }
 
     @Override
@@ -52,21 +40,18 @@ public class TelegramBotController extends TelegramLongPollingBot {
 
     @Override
     public void onUpdateReceived(Update update) {
+        String message = "";
         if (update.hasMessage()) {
-            Long id = update.getMessage().getChatId();
-            String message = update.getMessage().getText();
-            if (message.startsWith(COMMAND_PREFIX)) {
-                commandContainer.retrieveCommand(message).execute(update);
-            } else if (workerService.isCreating(id)) {
-                sendMessage(new SendMessage(id.toString(),
-                                            workerService.createWorkerBySteps(id, workerService.getStep(id), message)));
-            }
+            message = update.getMessage().getText();
         }
         if (update.hasCallbackQuery()) {
-            String message = update.getCallbackQuery().getData();
-            if (message.startsWith(COMMAND_PREFIX)) {
-                commandContainer.retrieveCommand(message).execute(update);
-            }
+            message = update.getCallbackQuery().getData();
+        }
+        if (message.startsWith(COMMAND_PREFIX)) {
+            commandContainer.retrieveCommand(message).execute(update);
+        }
+        if(stepsContainer.isContains(update)) {
+            stepsContainer.getStep(update).doStep(update);
         }
     }
 
@@ -92,7 +77,7 @@ public class TelegramBotController extends TelegramLongPollingBot {
             keyBoardHandling(query);
         }
     }*/
-
+/*
     public void sendInlineKeyBoardMessage(long chanId) {
         InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
         InlineKeyboardButton button1 = new InlineKeyboardButton();
@@ -161,6 +146,6 @@ public class TelegramBotController extends TelegramLongPollingBot {
         } catch (TelegramApiException e) {
             log.error(e);
         }
-    }
+    }*/
 
 }

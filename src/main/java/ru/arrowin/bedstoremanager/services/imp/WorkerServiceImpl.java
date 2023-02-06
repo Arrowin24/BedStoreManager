@@ -35,7 +35,7 @@ public class WorkerServiceImpl implements WorkerService {
     }
 
     public String startCreateWorkerStep(long id) {
-        creatingSteps.put(id, new WorkerCreatingSteps(0, new Worker(id, "user", "user", "worker")));
+        creatingSteps.put(id, new WorkerCreatingSteps(0, new Worker(id,"user", "user", "worker")));
         return "Введите Имя";
     }
 
@@ -106,7 +106,6 @@ public class WorkerServiceImpl implements WorkerService {
                 finishWorkerSteps(id);
                 return positionAnswer + "\n" + "Все успещно создано";
             }
-
 
             default -> throw new RuntimeException("Что то не так");
         }

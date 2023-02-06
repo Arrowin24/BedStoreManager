@@ -1,27 +1,29 @@
 package ru.arrowin.bedstoremanager.command;
 
-import ru.arrowin.bedstoremanager.services.SendBotMessageService;
-import ru.arrowin.bedstoremanager.services.WorkerService;
 
-import java.util.HashMap;
+import org.springframework.stereotype.Component;
+
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
+@Component
 public class CommandContainer {
 
-    private final Map<String, Command> commandMap = new HashMap<>();
+    private final Map<String, Command> commandMap;
     private final Command unknownCommand;
 
-    public CommandContainer(SendBotMessageService sendBotMessageService, WorkerService workerService) {
+    public CommandContainer(List<Command> commands, UnknownCommand unknownCommand) {
+        commandMap = commands.stream()
+                             .filter(command -> !command.getName().equals(CommandName.UNKNOWN))
+                             .collect(
+                Collectors.toUnmodifiableMap(command -> command.getName().getCommandName(), command -> command,
+                                             (o1, o2) -> o1));
 
-        commandMap.put(CommandName.START.getCommandName(), new StartCommand(sendBotMessageService));
-        commandMap.put(CommandName.HELP.getCommandName(), new HelpCommand(sendBotMessageService));
-        commandMap.put(CommandName.CREATE_WORKER.getCommandName(),
-                       new CreateWorkerCommand(sendBotMessageService, workerService));
-
-        unknownCommand = new UnknownCommand(sendBotMessageService);
+        this.unknownCommand = unknownCommand;
     }
 
-    public Command retrieveCommand(String commandIdentifier) {
+    public CommandBehavior retrieveCommand(String commandIdentifier) {
         return commandMap.getOrDefault(commandIdentifier, unknownCommand);
     }
 }

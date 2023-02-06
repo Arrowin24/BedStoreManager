@@ -13,7 +13,8 @@ public enum CommandName {
     CREATE_FURNITURE("/newFurniture"),
     ADD_FURNITURE("/addFurniture"),
     GET_FURNITURE_TODAY("/getFurnitureToday"),
-    GET_SALARY_TODAY("/getSalaryToday")
+    GET_SALARY_TODAY("/getSalaryToday"),
+    UNKNOWN("/unknown")
     ;
     private final String commandName;
 }
