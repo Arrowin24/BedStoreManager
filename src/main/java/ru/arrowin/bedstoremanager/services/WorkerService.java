@@ -5,11 +5,6 @@ import java.util.List;
 
 
 public interface WorkerService {
-    int getStep(long id);
-
-    boolean isCreating(long id);
-
-    String createWorkerBySteps(long id, int step, String answer);
 
     void create(Worker worker);
 

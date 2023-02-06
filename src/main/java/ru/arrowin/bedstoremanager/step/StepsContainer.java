@@ -1,6 +1,5 @@
 package ru.arrowin.bedstoremanager.step;
 
-import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Repository;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
@@ -11,14 +10,10 @@ import java.util.Map;
 public class StepsContainer {
     private final Map<Long, Step> steps = new HashMap<>();
 
-    UnknownStep unknownStep;
 
-    public StepsContainer(@Lazy UnknownStep unknownStep) {
-        this.unknownStep = unknownStep;
-    }
 
     public Step getStep(Update update) {
-        return steps.getOrDefault(getId(update), unknownStep);
+        return steps.get(getId(update));
     }
 
     public void putStep(long id, Step step) {

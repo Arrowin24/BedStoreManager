@@ -9,7 +9,6 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 import ru.arrowin.bedstoremanager.command.CommandContainer;
 import ru.arrowin.bedstoremanager.step.StepsContainer;
 
-
 @Controller
 @Component
 @Log4j
@@ -40,112 +39,19 @@ public class TelegramBotController extends TelegramLongPollingBot {
 
     @Override
     public void onUpdateReceived(Update update) {
-        String message = "";
+        String message = "Какая то ошибка";
         if (update.hasMessage()) {
             message = update.getMessage().getText();
         }
         if (update.hasCallbackQuery()) {
             message = update.getCallbackQuery().getData();
         }
-        if (message.startsWith(COMMAND_PREFIX)) {
-            commandContainer.retrieveCommand(message).execute(update);
-        }
         if(stepsContainer.isContains(update)) {
             stepsContainer.getStep(update).doStep(update);
         }
-    }
-
-/*   @Override
-    public void onUpdateReceived(Update update) {
-        if (update.hasMessage()) {
-            var originalMessage = update.getMessage();
-            log.debug(originalMessage.getText());
-            log.debug(originalMessage.getFrom().toString());
-            if (update.getMessage().hasText()) {
-                long id = originalMessage.getFrom().getId();
-                if (workerService.isCreating(id)) {
-                    String answer = originalMessage.getText();
-                    sendMessage(new SendMessage(originalMessage.getChatId().toString(),
-                                                workerService.createWorkerBySteps(id, workerService.getStep(id),
-                                                                                  answer)));
-                } else if (originalMessage.getText().toLowerCase().contains("клавиат")) {
-                    sendInlineKeyBoardMessage(originalMessage.getChatId());
-            }
-            }
-        } else if (update.hasCallbackQuery()) {
-            CallbackQuery query = update.getCallbackQuery();
-            keyBoardHandling(query);
-        }
-    }*/
-/*
-    public void sendInlineKeyBoardMessage(long chanId) {
-        InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
-        InlineKeyboardButton button1 = new InlineKeyboardButton();
-        button1.setText("Добавление нового сотрудника");
-        button1.setCallbackData("/add");
-        InlineKeyboardButton button2 = new InlineKeyboardButton();
-        button2.setText("Вывод всех сотрудников");
-        button2.setCallbackData("/allWorker");
-        InlineKeyboardButton button3 = new InlineKeyboardButton();
-        button3.setText("Добавить новую мебель");
-        button3.setCallbackData("/addFurniture");
-        List<InlineKeyboardButton> keyboardButtonsRow1 = new ArrayList<>();
-        List<InlineKeyboardButton> keyboardButtonsRow2 = new ArrayList<>();
-        List<InlineKeyboardButton> keyboardButtonsRow3 = new ArrayList<>();
-        keyboardButtonsRow1.add(button1);
-        keyboardButtonsRow2.add(button2);
-        keyboardButtonsRow3.add(button3);
-        List<List<InlineKeyboardButton>> buttonsColons = new ArrayList<>();
-        buttonsColons.add(keyboardButtonsRow1);
-        buttonsColons.add(keyboardButtonsRow2);
-        buttonsColons.add(keyboardButtonsRow3);
-        inlineKeyboardMarkup.setKeyboard(buttonsColons);
-        SendMessage message = new SendMessage();
-        message.setChatId(chanId);
-        message.setText("Выберете пункт");
-        message.setReplyMarkup(inlineKeyboardMarkup);
-        try {
-            execute(message);
-        } catch (TelegramApiException e) {
-            log.error(e);
+        if (message.startsWith(COMMAND_PREFIX)) {
+            commandContainer.retrieveCommand(message).execute(update);
         }
     }
-
-    public void keyBoardHandling(CallbackQuery query) {
-        String answer;
-        switch (query.getData()) {
-            case "/allWorker" -> answer = workerService.readAll().toString();
-            case "/add" -> {
-                Long id = query.getFrom().getId();
-                answer = workerService.createWorkerBySteps(id, -1, " ");
-            }
-            case "/addFurniture" -> {
-                furnitureService.add(new Furniture("Шкаф", 500));
-                answer = furnitureService.readAll().toString();
-
-            }
-            default -> {
-                answer = "Что-то пошло не так";
-                log.debug(query.getData());
-            }
-        }
-        try {
-            execute(new SendMessage(query.getFrom().getId().toString(), answer));
-
-        } catch (TelegramApiException e) {
-            log.error(e);
-        }
-    }
-
-    public void sendMessage(SendMessage message) {
-        if (message == null) {
-            return;
-        }
-        try {
-            execute(message);
-        } catch (TelegramApiException e) {
-            log.error(e);
-        }
-    }*/
 
 }

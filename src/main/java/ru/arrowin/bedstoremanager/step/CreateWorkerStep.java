@@ -10,8 +10,10 @@ import ru.arrowin.bedstoremanager.models.Worker;
 import ru.arrowin.bedstoremanager.services.SendBotMessageService;
 import ru.arrowin.bedstoremanager.services.WorkerService;
 
-@Component
+
+
 @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
+@Component
 public class CreateWorkerStep extends Step {
     private final Worker worker;
 
@@ -32,6 +34,9 @@ public class CreateWorkerStep extends Step {
         this.worker = new Worker();
     }
 
+    public Worker getWorker() {
+        return worker;
+    }
 
     @Override
     public void doStep(Update update) {
@@ -51,9 +56,10 @@ public class CreateWorkerStep extends Step {
     @Override
     public void startStep(Update update) {
         long id = getId(update);
-        setStep(StepName.ONE);
-        worker.setId(id);
-        getContainer().putStep(id, this);
+        CreateWorkerStep workerStep = new CreateWorkerStep(getContainer(),workerService, getSendBotMessageService());
+        workerStep.setStep(StepName.ONE);
+        workerStep.getWorker().setId(id);
+        getContainer().putStep(id, workerStep);
         SendMessage message = new SendMessage();
         message.setChatId(id);
         message.setText(START_TEXT);
