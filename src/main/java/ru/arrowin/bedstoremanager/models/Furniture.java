@@ -21,6 +21,7 @@ public class Furniture {
     @Column(name = "cost") private double cost;
 
 
+
     public Furniture(String name, double cost) {
         this.name = name;
         this.cost = cost;

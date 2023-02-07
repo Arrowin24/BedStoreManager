@@ -64,7 +64,6 @@ public class CreateWorkerStep extends Step {
         message.setChatId(id);
         message.setText(START_TEXT);
         getSendBotMessageService().sendMessage(message);
-
     }
 
 

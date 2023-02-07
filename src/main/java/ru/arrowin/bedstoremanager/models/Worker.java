@@ -24,7 +24,11 @@ public class Worker {
 
     @Override
     public String toString() {
-        return "Worker: " + "id=" + id + ", name='" + name + '\'' + ", password='" + password + '\'' + ", position='" + position;
+        return "Worker{" + "id=" + id + ", name='" + name + '\'' + ", password='" + password + '\'' + ", position='" + position + '\'' + '}';
+    }
+
+    public String toText() {
+        return "Сотрудник с ID: " + id + "\n Имя: " + name + "\nДолжность: " + position + "\n";
     }
 
     @Override

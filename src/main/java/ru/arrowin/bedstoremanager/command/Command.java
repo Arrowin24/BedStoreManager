@@ -10,6 +10,4 @@ public abstract class Command implements CommandBehavior {
     public CommandName getName() {
         return name;
     }
-
-
 }

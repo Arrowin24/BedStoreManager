@@ -39,7 +39,7 @@ public class TelegramBotController extends TelegramLongPollingBot {
 
     @Override
     public void onUpdateReceived(Update update) {
-        String message = "Какая то ошибка";
+        String message = "Какая-то ошибка";
         if (update.hasMessage()) {
             message = update.getMessage().getText();
         }
