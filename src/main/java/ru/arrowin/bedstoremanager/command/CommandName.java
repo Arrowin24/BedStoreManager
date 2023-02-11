@@ -15,7 +15,7 @@ public enum CommandName {
     GET_FURNITURE_TODAY("/getFurnitureToday"),
     GET_SALARY_TODAY("/getSalaryToday"),
     GET_ALL_WORKERS("/getAllWorkers"),
-    UNKNOWN("/unknown")
-    ;
+    UNKNOWN("/unknown"),
+    GET_ALL_WORK_TODAY("/getAllWorkToday");
     private final String commandName;
 }
