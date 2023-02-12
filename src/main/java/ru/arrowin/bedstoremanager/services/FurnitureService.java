@@ -8,4 +8,6 @@ public interface FurnitureService {
     void add(Furniture furniture);
 
     List<Furniture> readAll();
+
+    double allCostInDay();
 }

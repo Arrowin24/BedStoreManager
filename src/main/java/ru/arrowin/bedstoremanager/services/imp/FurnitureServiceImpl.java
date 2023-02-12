@@ -11,6 +11,7 @@ import java.util.List;
 public class FurnitureServiceImpl implements FurnitureService {
     private final FurnitureRepository furnitureRepository;
 
+
     public FurnitureServiceImpl(FurnitureRepository furnitureRepository) {
         this.furnitureRepository = furnitureRepository;
     }
@@ -24,4 +25,13 @@ public class FurnitureServiceImpl implements FurnitureService {
     public List<Furniture> readAll() {
         return furnitureRepository.findAll();
     }
+    @Override
+    public double allCostInDay(){
+         return  furnitureRepository.findAll().stream().mapToDouble(Furniture::getCost).sum();
+    }
+
+  /*  public double getAllSpend(){
+       return List<Furniture> furnitures = furnitureRepository.findAll().stream().mapToDouble(Furniture::getCost).sum();
+    }
+*/
 }
