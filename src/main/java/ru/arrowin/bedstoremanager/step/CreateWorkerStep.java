@@ -6,6 +6,8 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
+import ru.arrowin.bedstoremanager.keyboard.WorkerKeyBoard;
 import ru.arrowin.bedstoremanager.models.Worker;
 import ru.arrowin.bedstoremanager.services.SendBotMessageService;
 import ru.arrowin.bedstoremanager.services.WorkerService;
@@ -107,7 +109,10 @@ public class CreateWorkerStep extends Step {
         SendMessage message = new SendMessage();
         message.setChatId(id);
         message.setText(FINISH_TEXT + "\n" + workerService.read(id));
+        message.setReplyMarkup(new WorkerKeyBoard().getKeyBoard());
         getSendBotMessageService().sendMessage(message);
+
+
     }
 
 

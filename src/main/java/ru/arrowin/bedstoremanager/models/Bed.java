@@ -6,13 +6,13 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "furniture")
+@Table(name = "beds")
 @Getter
 @Setter
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class Furniture {
+public class Bed {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,7 +22,7 @@ public class Furniture {
 
 
 
-    public Furniture(String name, double cost) {
+    public Bed(String name, double cost) {
         this.name = name;
         this.cost = cost;
     }
@@ -32,7 +32,7 @@ public class Furniture {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Furniture furniture = (Furniture) o;
+        Bed furniture = (Bed) o;
         return Double.compare(furniture.cost, cost) == 0 && name.equals(furniture.name);
     }
 
