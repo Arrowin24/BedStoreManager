@@ -28,7 +28,7 @@ public class BedsKeyBoard implements KeyBoard {
         for (Bed bed : beds) {
             InlineKeyboardButton button = new InlineKeyboardButton();
             button.setText(bed.getName());
-            button.setCallbackData(CommandName.ADD_CREATED_BED.getCommandName()+"&&"+bed.getName());
+            button.setCallbackData(CommandName.ADD_CREATED_BED.getCommandName()+"&&"+bed.getId());
             keyboard.add(createButtonsLine(button));
         }
         return new InlineKeyboardMarkup(keyboard);
