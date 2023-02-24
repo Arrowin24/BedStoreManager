@@ -5,30 +5,30 @@ import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 import ru.arrowin.bedstoremanager.command.CommandName;
-import ru.arrowin.bedstoremanager.models.Bed;
-import ru.arrowin.bedstoremanager.services.BedService;
+import ru.arrowin.bedstoremanager.models.answers.OtherWork;
+import ru.arrowin.bedstoremanager.models.answers.SmallFurniture;
+import ru.arrowin.bedstoremanager.services.OtherWorkService;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class BedsKeyBoard implements KeyBoard {
-
+public class OtherWorkKeyBoard implements KeyBoard{
     @Value(value = "${symbol.for.split}") private String SPLIT;
-    private final BedService bedService;
+    private final OtherWorkService otherWorkService;
 
-    public BedsKeyBoard(BedService bedService) {
-        this.bedService = bedService;
+    public OtherWorkKeyBoard(OtherWorkService otherWorkService) {
+        this.otherWorkService = otherWorkService;
     }
 
     @Override
     public InlineKeyboardMarkup getKeyBoard() {
-        List<Bed> beds = bedService.readAll();
+        List<OtherWork> otherWorks = otherWorkService.readAll();
         List<List<InlineKeyboardButton>> keyboard = new ArrayList<>();
-        for (Bed bed : beds) {
+        for (OtherWork otherWork : otherWorks) {
             InlineKeyboardButton button = new InlineKeyboardButton();
-            button.setText(bed.getName());
-            button.setCallbackData(CommandName.ADD_CREATED_BED.getCommandName()+"&&"+bed.getId());
+            button.setText(otherWork.getName());
+            button.setCallbackData(CommandName.ADD_OTHER_WORK.getCommandName()+"&&"+otherWork.getId());
             keyboard.add(createButtonsLine(button));
         }
         return new InlineKeyboardMarkup(keyboard);
