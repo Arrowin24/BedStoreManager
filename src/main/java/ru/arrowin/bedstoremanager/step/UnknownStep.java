@@ -8,8 +8,7 @@ import ru.arrowin.bedstoremanager.services.SendBotMessageService;
 
 @Component
 public class UnknownStep extends Step {
-    public UnknownStep(StepsContainer container, SendBotMessageService sendBotMessageService)
-    {
+    public UnknownStep(StepsContainer container, SendBotMessageService sendBotMessageService) {
         super(container, sendBotMessageService);
     }
 

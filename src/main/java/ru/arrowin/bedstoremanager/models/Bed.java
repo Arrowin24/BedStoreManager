@@ -27,7 +27,6 @@ public class Bed {
         this.cost = cost;
     }
 
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

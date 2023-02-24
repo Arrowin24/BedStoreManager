@@ -10,8 +10,6 @@ import java.util.Map;
 public class StepsContainer {
     private final Map<Long, Step> steps = new HashMap<>();
 
-
-
     public Step getStep(Update update) {
         return steps.get(getId(update));
     }

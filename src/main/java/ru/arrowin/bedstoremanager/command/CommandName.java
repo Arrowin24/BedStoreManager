@@ -16,6 +16,9 @@ public enum CommandName {
     GET_SALARY_TODAY("/getSalaryToday"),
     GET_ALL_WORKERS("/getAllWorkers"),
     UNKNOWN("/unknown"),
-    GET_ALL_WORK_TODAY("/getAllWorkToday");
+    GET_ALL_WORK_TODAY("/getAllWorkToday"),
+    GET_ALL_BEDS("/getAllBeds"),
+    ADD_CREATED_BED("/addCreatedBed");
+
     private final String commandName;
 }
