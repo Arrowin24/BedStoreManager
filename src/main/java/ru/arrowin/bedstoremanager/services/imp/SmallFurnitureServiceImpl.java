@@ -30,4 +30,9 @@ public class SmallFurnitureServiceImpl implements SmallFurnitureService {
     public double allCostInDay() {
         return  smallFurnitureRepository.findAll().stream().mapToDouble(SmallFurniture::getCost).sum();
     }
+
+    @Override
+    public SmallFurniture getSmallFurniture(int id) {
+        return   smallFurnitureRepository.findById(id).get();
+    }
 }

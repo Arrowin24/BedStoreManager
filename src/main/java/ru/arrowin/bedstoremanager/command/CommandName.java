@@ -21,8 +21,8 @@ public enum CommandName {
     GET_ALL_SMALL_FURNITURE("/getAllSmallFurniture"),
     GET_ALL_OTHER_WORK("/getAllOtherWork"),
     ADD_CREATED_BED("/addCreatedBed"),
-    ADD_OTHER_WORK("/addCreatedOtherWork"),
-    ADD_SMALL_FURNITURE("/addCreatedSmallFurniture");
+    ADD_CREATED_OTHER_WORK("/addCreatedOtherWork"),
+    ADD_CREATED_SMALL_FURNITURE("/addCreatedSmallFurniture");
 
 
     private final String commandName;

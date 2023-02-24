@@ -28,7 +28,7 @@ public class OtherWorkKeyBoard implements KeyBoard{
         for (OtherWork otherWork : otherWorks) {
             InlineKeyboardButton button = new InlineKeyboardButton();
             button.setText(otherWork.getName());
-            button.setCallbackData(CommandName.ADD_OTHER_WORK.getCommandName()+"&&"+otherWork.getId());
+            button.setCallbackData(CommandName.ADD_CREATED_OTHER_WORK.getCommandName()+"&&"+otherWork.getId());
             keyboard.add(createButtonsLine(button));
         }
         return new InlineKeyboardMarkup(keyboard);
