@@ -11,4 +11,5 @@ public interface SmallFurnitureService {
     List<SmallFurniture> readAll();
 
     double allCostInDay();
+   SmallFurniture getSmallFurniture(int id);
 }

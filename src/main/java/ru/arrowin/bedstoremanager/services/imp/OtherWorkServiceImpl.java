@@ -31,5 +31,10 @@ public class OtherWorkServiceImpl implements OtherWorkService {
         return  otherWorkRepository.findAll().stream().mapToDouble(OtherWork::getCost).sum();
     }
 
+    @Override
+    public OtherWork getOtherWork(int id) {
+        return otherWorkRepository.findById(id).get();
+    }
+
 
 }

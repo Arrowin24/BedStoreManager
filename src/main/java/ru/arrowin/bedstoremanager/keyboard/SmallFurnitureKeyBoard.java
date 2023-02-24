@@ -28,9 +28,8 @@ public class SmallFurnitureKeyBoard implements KeyBoard{
         List<List<InlineKeyboardButton>> keyboard = new ArrayList<>();
         for (SmallFurniture smallFurniture : smallFurnitures) {
             InlineKeyboardButton button = new InlineKeyboardButton();
-            System.out.println(CommandName.ADD_SMALL_FURNITURE.getCommandName()+"&&"+smallFurniture.getName());
             button.setText(smallFurniture.getName());
-            button.setCallbackData(CommandName.ADD_SMALL_FURNITURE.getCommandName()+"&&"+smallFurniture.getId());
+            button.setCallbackData(CommandName.ADD_CREATED_SMALL_FURNITURE.getCommandName()+"&&"+smallFurniture.getId());
             keyboard.add(createButtonsLine(button));
         }
         return new InlineKeyboardMarkup(keyboard);
