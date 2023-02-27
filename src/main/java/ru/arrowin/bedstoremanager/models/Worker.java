@@ -20,7 +20,9 @@ public class Worker {
     private Long id;
     @Column(name = "name") private String name;
     @Column(name = "password") private String password;
-    @Column(name = "position") private String position;
+    @Column(name = "position")
+    @Enumerated(EnumType.STRING)
+    private Position position;
 
     @Override
     public String toString() {

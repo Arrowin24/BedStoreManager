@@ -6,13 +6,11 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
-import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import ru.arrowin.bedstoremanager.keyboard.WorkerKeyBoard;
+import ru.arrowin.bedstoremanager.models.Position;
 import ru.arrowin.bedstoremanager.models.Worker;
 import ru.arrowin.bedstoremanager.services.SendBotMessageService;
 import ru.arrowin.bedstoremanager.services.WorkerService;
-
-
 
 @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 @Component
@@ -93,7 +91,7 @@ public class CreateWorkerStep extends Step {
 
     private void addWorkerPositionStep(Update update) {
         long id = getId(update);
-        String position = update.getMessage().getText();
+        Position position = Position.valueOf(update.getMessage().getText().trim().toUpperCase());
         worker.setPosition(position);
         setStep(StepName.FOUR);
         SendMessage message = new SendMessage();

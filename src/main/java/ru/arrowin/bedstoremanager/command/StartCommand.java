@@ -29,5 +29,4 @@ public class StartCommand extends Command {
         message.setReplyMarkup(new StartKeyBoard().getKeyBoard());
         sendBotMessageService.sendMessage(message);
     }
-
 }
