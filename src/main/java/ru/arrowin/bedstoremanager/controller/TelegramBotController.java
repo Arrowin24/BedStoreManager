@@ -15,6 +15,7 @@ import ru.arrowin.bedstoremanager.step.StepsContainer;
 public class TelegramBotController extends TelegramLongPollingBot {
 
     public static String COMMAND_PREFIX = "/";
+    @Value("${symbol.for.split}") private String SPLIT;
     @Value("${telegram.bot.name}") private String botName;
     @Value("${telegram.bot.token}") private String botToken;
 
@@ -50,8 +51,8 @@ public class TelegramBotController extends TelegramLongPollingBot {
             stepsContainer.getStep(update).doStep(update);
         }
         if (message.startsWith(COMMAND_PREFIX)) {
-            commandContainer.retrieveCommand(message).execute(update);
+            String command = message.split(SPLIT)[0];
+            commandContainer.retrieveCommand(command).execute(update);
         }
     }
-
 }

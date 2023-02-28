@@ -1,4 +1,4 @@
-package ru.arrowin.bedstoremanager.models;
+package ru.arrowin.bedstoremanager.models.answers;
 
 import lombok.*;
 
@@ -6,23 +6,23 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "beds")
+@Table(name = "small_furniture")
 @Getter
 @Setter
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class Bed {
+public class SmallFurniture  {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(name = "name") private String name;
-    @Column(name = "cost") private double cost;
+    @Column(name = "name")
+    private String name;
+    @Column(name = "cost")
+    private double cost;
 
-
-
-    public Bed(String name, double cost) {
+    public SmallFurniture(String name, double cost) {
         this.name = name;
         this.cost = cost;
     }
@@ -31,12 +31,12 @@ public class Bed {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Bed furniture = (Bed) o;
-        return Double.compare(furniture.cost, cost) == 0 && name.equals(furniture.name);
+        SmallFurniture that = (SmallFurniture) o;
+        return id == that.id && Double.compare(that.cost, cost) == 0 && Objects.equals(name, that.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, cost);
+        return Objects.hash(id, name, cost);
     }
 }

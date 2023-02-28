@@ -2,7 +2,6 @@ package ru.arrowin.bedstoremanager.services.imp;
 
 import org.springframework.stereotype.Service;
 import ru.arrowin.bedstoremanager.models.Bed;
-import ru.arrowin.bedstoremanager.models.answers.SalaryBed;
 import ru.arrowin.bedstoremanager.repository.BedRepository;
 import ru.arrowin.bedstoremanager.services.BedService;
 
@@ -20,6 +19,10 @@ public class BedServiceImpl implements BedService {
     @Override
     public void add(Bed bed) {
         bedRepository.save(bed);
+    }
+    @Override
+    public Bed getBed(int id){
+        return bedRepository.findById(id).get();
     }
 
     @Override

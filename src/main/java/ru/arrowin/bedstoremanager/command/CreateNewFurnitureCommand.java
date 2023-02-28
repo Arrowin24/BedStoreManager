@@ -5,10 +5,10 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 import ru.arrowin.bedstoremanager.services.SendBotMessageService;
 
 @Component
-public class AddNewFurnitureCommand extends Command{
+public class CreateNewFurnitureCommand extends Command{
     SendBotMessageService sendBotMessageService;
 
-    public AddNewFurnitureCommand(SendBotMessageService sendBotMessageService) {
+    public CreateNewFurnitureCommand(SendBotMessageService sendBotMessageService) {
         super(CommandName.CREATE_FURNITURE);
         this.sendBotMessageService = sendBotMessageService;
     }
