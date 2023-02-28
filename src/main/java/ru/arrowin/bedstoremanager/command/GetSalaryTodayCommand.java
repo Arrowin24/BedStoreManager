@@ -18,7 +18,7 @@ import java.time.LocalDate;
 public class GetSalaryTodayCommand extends Command {
     @Value("${symbol.for.split}")
     private String SPLIT;
-    private final static String PREVIEW = "Сегодня вы сделали кровати : ";
+    private final static String PREVIEW = "Сегодня вы заработали : ";
 
     private final SendBotMessageService sendBotMessageService;
     private final CreatedBedsService createdBedsService;
@@ -39,23 +39,11 @@ public class GetSalaryTodayCommand extends Command {
     @Override
     public void execute(Update update) {
         Long userId = getId(update);
-        int bedId = Integer.parseInt(update.getCallbackQuery().getData().split(SPLIT)[1]);
-        LocalDate today = LocalDate.now();
-        CreatedBed bed = new CreatedBed(userId, bedId, today);
-        int otherWorkId = Integer.parseInt(update.getCallbackQuery().getData().split(SPLIT)[1]);
-        LocalDate today1 = LocalDate.now();
-        CreatedOtherWork otherWork = new CreatedOtherWork(userId, otherWorkId, today1);
-        int smallFurnitureId = Integer.parseInt(update.getCallbackQuery().getData().split(SPLIT)[1]);
-        LocalDate today2 = LocalDate.now();
-        CreatedSmallFurniture smallFurniture = new CreatedSmallFurniture(userId, smallFurnitureId, today2);
-        createdSmallFurnitureService.add(smallFurniture);
-        createdOtherWorkService.add(otherWork);
-        createdBedsService.add(bed);
+        double totalSumSalary = createdBedsService.getTodayBedSalary(userId)+ createdOtherWorkService.getTodayOtherWorkSalary(userId)+
+                createdSmallFurnitureService.getTodaySmallFurnitureSalary(userId);
         SendMessage message = new SendMessage();
         message.setChatId(getId(update));
-        message.setText(PREVIEW + createdBedsService.getTodayCreatedBeds(userId) + "\n" + "Иные раблоты: " + createdOtherWorkService.getTodayCreatedOtherWork(userId)
-                + "\n" + "Малую мебель:  " + createdSmallFurnitureService.getTodayCreatedSmallFurniture(userId) + "\n" + "Сегодня вы заработали : " + createdBedsService.getTodayBedSalary(userId) +
-                createdOtherWorkService.getTodayOtherWorkSalary(userId) + createdSmallFurnitureService.getTodaySmallFurnitureSalary(userId));
+        message.setText(PREVIEW + totalSumSalary + " рублей");
         sendBotMessageService.sendMessage(message);
     }
 }
