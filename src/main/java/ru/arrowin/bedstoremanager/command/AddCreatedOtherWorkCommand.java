@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
-import ru.arrowin.bedstoremanager.models.CreatedBed;
+import ru.arrowin.bedstoremanager.keyboard.BackToMenuKeyBoard;
 import ru.arrowin.bedstoremanager.models.answers.CreatedOtherWork;
 import ru.arrowin.bedstoremanager.services.CreatedOtherWorkService;
 import ru.arrowin.bedstoremanager.services.SendBotMessageService;
@@ -35,6 +35,7 @@ public class AddCreatedOtherWorkCommand extends Command{
         SendMessage message = new SendMessage();
         message.setChatId(getId(update));
         message.setText(PREVIEW + createdOtherWorkService.getTodayCreatedOtherWork(userId) +"\n"+"Сегодня вы заработали на иной работе: "+createdOtherWorkService.getTodayOtherWorkSalary(userId));
+        message.setReplyMarkup(new BackToMenuKeyBoard().getKeyBoard());
         sendBotMessageService.sendMessage(message);
     }
 }

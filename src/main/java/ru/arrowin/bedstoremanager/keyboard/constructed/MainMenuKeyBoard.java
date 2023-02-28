@@ -21,13 +21,13 @@ public class MainMenuKeyBoard {
         Worker worker = workerService.read(userId);
         switch (worker.getPosition()) {
             case ADMIN -> {
-                return new ChiefEngineerKeyBoard().getKeyBoard();
+                return new AdminKeyBoard().getKeyBoard();
             }
             case WORKER -> {
                 return new WorkerKeyBoard().getKeyBoard();
             }
             case CHEF_ENGINEER -> {
-                return new AdminKeyBoard().getKeyBoard();
+                return new ChiefEngineerKeyBoard().getKeyBoard();
             }
             default -> throw new RuntimeException("Проблемы с определением должности");
         }

@@ -8,6 +8,7 @@ import lombok.Getter;
 public enum CommandName {
     START("/start"),
     HELP("/help"),
+    BACK_TO_MENU("/backToMenu"),
     CREATE_WORKER("/newWorker"),
     LOGIN("/login"),
     CREATE_FURNITURE("/newFurniture"),
