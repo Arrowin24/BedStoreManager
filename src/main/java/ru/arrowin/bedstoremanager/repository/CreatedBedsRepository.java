@@ -11,5 +11,5 @@ public interface CreatedBedsRepository extends JpaRepository<CreatedBed, Integer
 
     @Query(value = "SELECT * FROM created_beds WHERE user_id=?1 and date=?2",
            nativeQuery = true)
-    List<CreatedBed> findBedsByWorkerIdAndDate(Long userId, LocalDate date);
+    List<CreatedBed> findBedsBy(Long userId, LocalDate date);
 }

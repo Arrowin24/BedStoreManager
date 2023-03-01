@@ -1,7 +1,6 @@
 package ru.arrowin.bedstoremanager.services.imp;
 
 import org.springframework.stereotype.Service;
-import ru.arrowin.bedstoremanager.models.CreatedBed;
 import ru.arrowin.bedstoremanager.models.answers.CreatedOtherWork;
 import ru.arrowin.bedstoremanager.repository.CreatedOtherWorkRepository;
 import ru.arrowin.bedstoremanager.services.CreatedOtherWorkService;
@@ -38,9 +37,7 @@ public class CreatedOtherWorkServiceImpl implements CreatedOtherWorkService {
         return getOtherWorkIdStream(userId, today).map(id -> otherWorkService.getOtherWork(id).getName()).toList();
     }
     private Stream<Integer> getOtherWorkIdStream(Long userId, LocalDate date) {
-        return otherWorkRepository.findAll().stream()
-                .filter(otherWork -> otherWork.getUserId().equals(userId) && otherWork.getDate().isEqual(date))
-                .map(CreatedOtherWork::getOtherWorkId);
+        return otherWorkRepository.findOtherWorksBy(userId, date).stream().map(CreatedOtherWork::getOtherWorkId);
     }
 
     @Override

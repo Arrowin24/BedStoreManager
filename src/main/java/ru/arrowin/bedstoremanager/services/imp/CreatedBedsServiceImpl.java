@@ -39,7 +39,7 @@ public class CreatedBedsServiceImpl implements CreatedBedsService {
     }
 
     private Stream<Integer> getBedsIdStream(Long userId, LocalDate date) {
-        return repository.findBedsByWorkerIdAndDate(userId,date).stream().map(CreatedBed::getBedId);
+        return repository.findBedsBy(userId, date).stream().map(CreatedBed::getBedId);
     }
 
     @Override
