@@ -6,24 +6,25 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum CommandName {
-    START("/start"),
-    HELP("/help"),
-    BACK_TO_MENU("/backToMenu"),
-    CREATE_WORKER("/newWorker"),
-    LOGIN("/login"),
-    CREATE_FURNITURE("/newFurniture"),
-    ADD_FURNITURE("/addFurniture"),
-    GET_FURNITURE_TODAY("/getFurnitureToday"),
-    GET_SALARY_TODAY("/getSalaryToday"),
-    GET_ALL_WORKERS("/getAllWorkers"),
-    UNKNOWN("/unknown"),
-    GET_ALL_WORK_TODAY("/getAllWorkToday"),
-    GET_ALL_BEDS("/getAllBeds"),
-    GET_ALL_SMALL_FURNITURE("/getAllSmallFurniture"),
-    GET_ALL_OTHER_WORK("/getAllOtherWork"),
-    ADD_CREATED_BED("/addCreatedBed"),
-    ADD_CREATED_OTHER_WORK("/addCreatedOtherWork"),
-    ADD_CREATED_SMALL_FURNITURE("/addCreatedSmallFurniture");
+    START("/start"), // команда для вызова стартового меню
+    HELP("/help"), // вывод главного меню
+    BACK_TO_MENU("/backToMenu"), // команда для возвращения в главное меню
+    CREATE_WORKER("/newWorker"), // Регистрация и изменение данных по рабочим
+    LOGIN("/login"), // логирование НЕ ИСПОЛЬЗУЕТСЯ
+    CREATE_FURNITURE("/newFurniture"), //добавление новой мебели НЕ ИСПОЛЬЗУЕТСЯ
+    ADD_FURNITURE("/addFurniture"), // НЕ ИСПОЛЬЗУЕТСЯ
+    GET_FURNITURE_TODAY("/getFurnitureToday"), //Получение сделанной мебели за день НЕ ДОДЕЛАНО НЕ ИСПОЛЬЗУЕТСЯ
+    GET_SALARY_TODAY("/getSalaryToday"), // Получение заработной платы за день
+    GET_ALL_WORKERS("/getAllWorkers"), // Получением списка всех работников
+    UNKNOWN("/unknown"), // Сообщение для запроса нерабочих команд
+    GET_ALL_WORK_TODAY("/getAllWorkToday"), //ПОлучение сделанной работы за день НЕ ДОДЕЛАНО
+    GET_ALL_BEDS("/getAllBeds"), // Вывод списка кроватей для изготовления
+    GET_ALL_SMALL_FURNITURE("/getAllSmallFurniture"), //Вывод списка малой мебели для изотовления
+    GET_ALL_OTHER_WORK("/getAllOtherWork"), // Вывод списка доступной работы
+    ADD_CREATED("/addCreated"), // Добавление новых данных по кроватям
+    ADD_CREATED_BED("/addCreatedBed"), //Учет сделанной кровати
+    ADD_CREATED_OTHER_WORK("/addCreatedOtherWork"), //Учет сделанной другой работы
+    ADD_CREATED_SMALL_FURNITURE("/addCreatedSmallFurniture"); //Учет сделанной малой мебели
 
 
     private final String commandName;
