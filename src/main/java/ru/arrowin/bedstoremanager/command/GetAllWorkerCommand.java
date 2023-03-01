@@ -3,7 +3,7 @@ package ru.arrowin.bedstoremanager.command;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
-import ru.arrowin.bedstoremanager.keyboard.WorkerKeyBoard;
+import ru.arrowin.bedstoremanager.keyboard.BackToMenuKeyBoard;
 import ru.arrowin.bedstoremanager.models.Worker;
 import ru.arrowin.bedstoremanager.services.SendBotMessageService;
 import ru.arrowin.bedstoremanager.services.WorkerService;
@@ -30,7 +30,7 @@ public class GetAllWorkerCommand extends Command {
         SendMessage message = new SendMessage();
         message.setChatId(getId(update));
         message.setText(PREVIEW + workers);
-        message.setReplyMarkup(new WorkerKeyBoard().getKeyBoard());
+        message.setReplyMarkup(new BackToMenuKeyBoard().getKeyBoard());
         sendBotMessageService.sendMessage(message);
     }
 }

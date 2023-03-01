@@ -39,9 +39,7 @@ public class CreatedBedsServiceImpl implements CreatedBedsService {
     }
 
     private Stream<Integer> getBedsIdStream(Long userId, LocalDate date) {
-        return repository.findAll().stream()
-                         .filter(bed -> bed.getUserId().equals(userId) && bed.getDate().isEqual(date))
-                         .map(CreatedBed::getBedId);
+        return repository.findBedsBy(userId, date).stream().map(CreatedBed::getBedId);
     }
 
     @Override

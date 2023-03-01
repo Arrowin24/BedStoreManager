@@ -8,25 +8,22 @@ import ru.arrowin.bedstoremanager.services.SendBotMessageService;
 import ru.arrowin.bedstoremanager.services.WorkerService;
 
 @Component
-public class HelpCommand extends Command {
+public class BackToMenuCommand extends Command {
+
     private final SendBotMessageService sendBotMessageService;
     private final WorkerService workerService;
 
-    private final static String HELP_MESSAGE =
-            "Я сейчас выведу клавиатуру со всеми возможными командами, которые " + "доступны тебе";
-
-    public HelpCommand(SendBotMessageService sendBotMessageService, WorkerService workerService) {
-        super(CommandName.HELP);
+    public BackToMenuCommand(SendBotMessageService sendBotMessageService, WorkerService workerService) {
+        super(CommandName.BACK_TO_MENU);
         this.sendBotMessageService = sendBotMessageService;
         this.workerService = workerService;
     }
-
 
     @Override
     public void execute(Update update) {
         SendMessage message = new SendMessage();
         message.setChatId(getId(update));
-        message.setText(HELP_MESSAGE);
+        message.setText("Выберите команду из списка:");
         message.setReplyMarkup(new MainMenuKeyBoard(workerService).getKeyBoard(update));
         sendBotMessageService.sendMessage(message);
     }

@@ -1,7 +1,6 @@
 package ru.arrowin.bedstoremanager.services.imp;
 
 import org.springframework.stereotype.Service;
-import ru.arrowin.bedstoremanager.models.CreatedBed;
 import ru.arrowin.bedstoremanager.models.answers.CreatedSmallFurniture;
 import ru.arrowin.bedstoremanager.repository.CreatedSmallFurnitureRepository;
 import ru.arrowin.bedstoremanager.services.CreatedSmallFurnitureService;
@@ -38,12 +37,8 @@ public class CreatedSmallFurnitureServiceImpl implements CreatedSmallFurnitureSe
         return getBedsIdStream(userId, today).map(id ->smallFurnitureService.getSmallFurniture(id).getName()).toList();
     }
     private Stream<Integer> getBedsIdStream(Long userId, LocalDate date) {
-        return furnitureRepository.findAll().stream()
-                .filter(smallFurniture -> smallFurniture.getUserId().equals(userId) && smallFurniture.getDate().isEqual(date))
-                .map(CreatedSmallFurniture::getSmallFurnitureId);
+        return furnitureRepository.findCreatedSmallFurnitureBy(userId, date).stream().map(CreatedSmallFurniture::getSmallFurnitureId);
     }
-
-
 
     @Override
     public Double getTodaySmallFurnitureSalary(Long userId) {

@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
-import ru.arrowin.bedstoremanager.models.CreatedBed;
+import ru.arrowin.bedstoremanager.keyboard.BackToMenuKeyBoard;
 import ru.arrowin.bedstoremanager.models.answers.CreatedSmallFurniture;
 import ru.arrowin.bedstoremanager.services.CreatedSmallFurnitureService;
 import ru.arrowin.bedstoremanager.services.SendBotMessageService;
@@ -36,6 +36,7 @@ public class AddCreatedSmallFurnitureCommand extends Command{
         SendMessage message = new SendMessage();
         message.setChatId(getId(update));
         message.setText(PREVIEW + createdSmallFurnitureService.getTodayCreatedSmallFurniture(userId) +"\n"+"Сегодня вы заработали на малой мебели: "+createdSmallFurnitureService.getTodaySmallFurnitureSalary(userId));
+        message.setReplyMarkup(new BackToMenuKeyBoard().getKeyBoard());
         sendBotMessageService.sendMessage(message);
     }
 

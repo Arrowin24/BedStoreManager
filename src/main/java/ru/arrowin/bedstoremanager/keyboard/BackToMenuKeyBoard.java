@@ -7,16 +7,13 @@ import ru.arrowin.bedstoremanager.command.CommandName;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MasterKeyBoard implements KeyBoard{
+public class BackToMenuKeyBoard implements KeyBoard {
+
     @Override
     public InlineKeyboardMarkup getKeyBoard() {
-        InlineKeyboardButton button1 =  createButton("Вывести всех сотрудников" , CommandName.GET_ALL_WORKERS);
-        InlineKeyboardButton button2 =  createButton("Добавить новую мебель" , CommandName.CREATE_FURNITURE);
-        InlineKeyboardButton button3 =  createButton("Вывод выполненных работ" , CommandName.GET_ALL_WORK_TODAY);
+        InlineKeyboardButton button1 = createButton("Вернуться в меню", CommandName.BACK_TO_MENU);
         List<List<InlineKeyboardButton>> keyboard = new ArrayList<>();
         keyboard.add(createButtonsLine(button1));
-        keyboard.add(createButtonsLine(button2));
-        keyboard.add(createButtonsLine(button3));
         return new InlineKeyboardMarkup(keyboard);
     }
 }
