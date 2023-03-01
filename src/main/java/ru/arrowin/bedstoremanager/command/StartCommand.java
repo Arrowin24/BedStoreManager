@@ -13,8 +13,7 @@ public class StartCommand extends Command {
 
 
     private final static String START_MESSAGE = "Привет. Я телеграм бот, который поможет тебе следить за проделанной "
-            + "работой. " + "Поэтому если ты первый раз пользуешься мной, то нажми кнопку 'Зарегистрироваться'," + " "
-            + "если ты уже использовал меня, то нажми кнопку 'Авторизоавться'";
+            + "работой. " + "Поэтому если ты первый раз пользуешься мной, то нажми кнопку 'Зарегистрироваться'.";
 
     public StartCommand(SendBotMessageService sendBotMessageService) {
         super(CommandName.START);
