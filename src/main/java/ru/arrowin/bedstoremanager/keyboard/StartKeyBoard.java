@@ -10,11 +10,11 @@ import java.util.List;
 public class StartKeyBoard implements KeyBoard {
     @Override
     public InlineKeyboardMarkup getKeyBoard() {
-        InlineKeyboardButton button1 = createButton("Создать новый аккаунт", CommandName.CREATE_WORKER);
-        InlineKeyboardButton button2 = createButton("Авторизоваться", CommandName.LOGIN);
+        InlineKeyboardButton button1 = createButton("Зарегистрироваться", CommandName.CREATE_WORKER);
+  //      InlineKeyboardButton button2 = createButton("Авторизоваться", CommandName.LOGIN);
         List<List<InlineKeyboardButton>> keyboard = new ArrayList<>();
         keyboard.add(createButtonsLine(button1));
-        keyboard.add(createButtonsLine(button2));
+  //     keyboard.add(createButtonsLine(button2));
         return new InlineKeyboardMarkup(keyboard);
     }
 }
