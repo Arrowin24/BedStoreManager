@@ -12,7 +12,7 @@ public class ChiefEngineerKeyBoard implements KeyBoard {
 
     @Override
     public InlineKeyboardMarkup getKeyBoard() {
-        InlineKeyboardButton button1 = createButton("Добавить новую мебель", CommandName.ADD_FURNITURE);
+        InlineKeyboardButton button1 = createButton("Добавить новую мебель", CommandName.CREATE_FURNITURE);
         InlineKeyboardButton button2 = createButton("Вывести список выполненых сегодня работ",
                                                     CommandName.GET_FURNITURE_TODAY);
         InlineKeyboardButton button3 = createButton("Посчитать заработок за сегодня", CommandName.GET_SALARY_TODAY);
@@ -26,9 +26,7 @@ public class ChiefEngineerKeyBoard implements KeyBoard {
         keyboard.add(createButtonsLine(button2));
         keyboard.add(createButtonsLine(button3));
         keyboard.add(createButtonsLine(button4));
-   /*     keyboard.add(createButtonsLine(button5));
-        keyboard.add(createButtonsLine(button6));
-        keyboard.add(createButtonsLine(button7));*/
+
         return new InlineKeyboardMarkup(keyboard);
     }
 }
