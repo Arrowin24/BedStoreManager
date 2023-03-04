@@ -15,5 +15,6 @@ public interface CreatedBedsService {
 
     double getBedsTodayByAmount(Long userid);
 
-    double getMonthBedSalary(Long userId);
+
+    double getCurrentMonthBedSalary(Long userId);
 }

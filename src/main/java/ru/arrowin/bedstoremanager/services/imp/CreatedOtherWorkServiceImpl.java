@@ -50,6 +50,11 @@ public class CreatedOtherWorkServiceImpl implements CreatedOtherWorkService {
         LocalDate today = LocalDate.now();
         return getOtherWorkIdStream(userid,today).mapToDouble(id->otherWorkService.readAll().size()).count();
     }
+    @Override
+    public double getCurrentMonthOtherWorkSalary(Long userId){
+        int month = LocalDate.now().getMonth().getValue();
+        return otherWorkRepository.findOtherWorkByMonth(userId,month).stream().mapToDouble(ow->otherWorkService.getOtherWork(ow.getOtherWorkId()).getCost()).sum();
+    }
 
 
 }

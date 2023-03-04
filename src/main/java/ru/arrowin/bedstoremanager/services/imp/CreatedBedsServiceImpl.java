@@ -42,6 +42,7 @@ public class CreatedBedsServiceImpl implements CreatedBedsService {
         return repository.findBedsBy(userId, date).stream().map(CreatedBed::getBedId);
     }
 
+
     @Override
     public Double getTodayBedSalary(Long userId) {
         LocalDate today = LocalDate.now();
@@ -53,8 +54,8 @@ public class CreatedBedsServiceImpl implements CreatedBedsService {
         return getBedsIdStream(userid,today).mapToDouble(id->bedService.readAll().size()).count();
     }
     @Override
-    public double getMonthBedSalary(Long userId){
-        LocalDate month = LocalDate.from(LocalDate.now().getMonth());
-        return getBedsIdStream(userId,month).mapToDouble(id->bedService.getBed(id).getCost()).sum();
+    public double getCurrentMonthBedSalary(Long userId){
+        int month = LocalDate.now().getMonth().getValue();
+        return repository.findBedsByMonth(userId,month).stream().mapToDouble(cb->bedService.getBed(cb.getBedId()).getCost()).sum();
     }
 }

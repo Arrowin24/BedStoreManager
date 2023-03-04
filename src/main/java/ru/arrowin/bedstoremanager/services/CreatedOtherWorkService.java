@@ -15,4 +15,6 @@ public interface CreatedOtherWorkService {
     Double getTodayOtherWorkSalary(Long userId);
 
     double getOtherWorkTodayByAmount(Long userid);
+
+    double getCurrentMonthOtherWorkSalary(Long userId);
 }

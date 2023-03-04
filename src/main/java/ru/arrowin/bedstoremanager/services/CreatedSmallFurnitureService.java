@@ -15,4 +15,6 @@ public interface CreatedSmallFurnitureService {
     Double getTodaySmallFurnitureSalary(Long userId);
 
     double getSmallFurnitureTodayByAmount(Long userid);
+
+    double getCurrentMonthSmallFurnitureSalary(Long userId);
 }

@@ -23,7 +23,8 @@ public enum CommandName {
     ADD_CREATED("/addCreated"), // Промежуточная команда для вызова кнопок для выполненных заказов
     ADD_CREATED_BED("/addCreatedBed"), //Учет сделанной кровати
     ADD_CREATED_OTHER_WORK("/addCreatedOtherWork"), //Учет сделанной другой работы
-    ADD_CREATED_SMALL_FURNITURE("/addCreatedSmallFurniture"); //Учет сделанной малой мебели
+    ADD_CREATED_SMALL_FURNITURE("/addCreatedSmallFurniture"), //Учет сделанной малой мебели
+    GET_SALARY_BY_CURRENT_MONTH("/getSalaryByCurrentMonth"); // Вызов зарплаты зща месяц
 
     private final String commandName;
 }
