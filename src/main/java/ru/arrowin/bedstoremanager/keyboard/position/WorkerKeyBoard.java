@@ -14,7 +14,7 @@ public class WorkerKeyBoard implements KeyBoard {
         InlineKeyboardButton button1 = createButton("Вывести список выполненых сегодня работ",
                                                     CommandName.GET_FURNITURE_TODAY);
         InlineKeyboardButton button2 = createButton("Посчитать заработок за сегодня", CommandName.GET_SALARY_TODAY);
-        InlineKeyboardButton button3 = createButton("Добавить готовый заказ", CommandName.ADD_CREATED);
+        InlineKeyboardButton button3 = createButton("Добавить сделанную работу", CommandName.ADD_CREATED);
 
         List<List<InlineKeyboardButton>> keyboard = new ArrayList<>();
         keyboard.add(createButtonsLine(button1));

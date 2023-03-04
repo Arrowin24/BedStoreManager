@@ -3,6 +3,7 @@ package ru.arrowin.bedstoremanager.command;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
+import ru.arrowin.bedstoremanager.keyboard.BackToMenuKeyBoard;
 import ru.arrowin.bedstoremanager.services.CreatedBedsService;
 import ru.arrowin.bedstoremanager.services.CreatedOtherWorkService;
 import ru.arrowin.bedstoremanager.services.CreatedSmallFurnitureService;
@@ -34,7 +35,7 @@ public class GetAllFurnitureTodayCommand extends Command {
         message.setText(GET_FURNITURE_TODAY_MASSAGE + "\n Кроватей: " + createdBedsService.getBedsTodayByAmount(userId)
                 + "\n Малой мебели: " + createdSmallFurnitureService.getSmallFurnitureTodayByAmount(userId) +
                 "\n Иных работ: " + createdOtherWorkService.getOtherWorkTodayByAmount(userId));
-
+        message.setReplyMarkup(new BackToMenuKeyBoard().getKeyBoard());
         sendBotMessageService.sendMessage(message);
     }
 }
