@@ -11,15 +11,17 @@ import java.util.List;
 public class WorkerKeyBoard implements KeyBoard {
     @Override
     public InlineKeyboardMarkup getKeyBoard() {
-        InlineKeyboardButton button1 = createButton("Вывести список выполненых сегодня работ",
+        InlineKeyboardButton button2 = createButton("Вывести список выполненых сегодня работ",
                                                     CommandName.GET_FURNITURE_TODAY);
-        InlineKeyboardButton button2 = createButton("Посчитать заработок за сегодня", CommandName.GET_SALARY_TODAY);
-        InlineKeyboardButton button3 = createButton("Добавить сделанную работу", CommandName.ADD_CREATED);
+        InlineKeyboardButton button1 = createButton("Зарплата за сегодня", CommandName.GET_SALARY_TODAY);
+        InlineKeyboardButton button4 = createButton("Добавить сделанную работу", CommandName.ADD_CREATED);
+        InlineKeyboardButton button3 = createButton("Зарплата за текущий месяц",CommandName.GET_SALARY_BY_CURRENT_MONTH);
 
         List<List<InlineKeyboardButton>> keyboard = new ArrayList<>();
         keyboard.add(createButtonsLine(button1));
         keyboard.add(createButtonsLine(button2));
         keyboard.add(createButtonsLine(button3));
+        keyboard.add(createButtonsLine(button4));
 
         return new InlineKeyboardMarkup(keyboard);
     }

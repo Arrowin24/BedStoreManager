@@ -50,4 +50,14 @@ public class CreatedSmallFurnitureServiceImpl implements CreatedSmallFurnitureSe
         LocalDate today = LocalDate.now();
         return getSmallFurnitureIdStream(userid,today).mapToDouble(id->smallFurnitureService.readAll().size()).count();
     }
+    @Override
+    public double getCurrentMonthSmallFurnitureSalary(Long userId){
+        int month = LocalDate.now().getMonth().getValue();
+        return furnitureRepository.findSmallFurnitureByMonth(userId,month).stream().mapToDouble(sf->smallFurnitureService.getSmallFurniture(sf.getSmallFurnitureId()).getCost()).sum();
+    }
+    @Override
+    public double getAmountSmallFurnitureForMaster(){
+        LocalDate today = LocalDate.now();
+        return (long) furnitureRepository.findSmallFurnitureBy(today).size();
+    }
 }
