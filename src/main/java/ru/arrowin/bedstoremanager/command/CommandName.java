@@ -12,7 +12,7 @@ public enum CommandName {
     CREATE_WORKER("/newWorker"), // Регистрация и изменение данных по рабочим
     LOGIN("/login"), // логирование НЕ ИСПОЛЬЗУЕТСЯ
     CREATE_FURNITURE("/newFurniture"), //добавление новой мебели НЕ ДОДЕЛАНО
-    GET_FURNITURE_TODAY("/getFurnitureToday"), //Получение сделанной мебели за день НЕ ДОДЕЛАНО НЕ ИСПОЛЬЗУЕТСЯ
+    GET_FURNITURE_TODAY("/getFurnitureToday"), //Получение сделанной мебели за день для работника
     GET_SALARY_TODAY("/getSalaryToday"), // Получение заработной платы за день
     GET_ALL_WORKERS("/getAllWorkers"), // Получением списка всех работников
     UNKNOWN("/unknown"), // Сообщение для запроса нерабочих команд
