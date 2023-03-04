@@ -12,4 +12,6 @@ public interface CreatedBedsService {
     List<String> getTodayCreatedBeds(Long userId);
 
     Double getTodayBedSalary(Long userId);
+
+    double getBedsTodayByAmount(Long userid);
 }

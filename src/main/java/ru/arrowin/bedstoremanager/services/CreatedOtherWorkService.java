@@ -13,4 +13,6 @@ public interface CreatedOtherWorkService {
     List<String> getTodayCreatedOtherWork(Long userId);
 
     Double getTodayOtherWorkSalary(Long userId);
+
+    double getOtherWorkTodayByAmount(Long userid);
 }

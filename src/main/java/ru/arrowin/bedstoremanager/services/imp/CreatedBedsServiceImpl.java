@@ -47,4 +47,9 @@ public class CreatedBedsServiceImpl implements CreatedBedsService {
         LocalDate today = LocalDate.now();
         return getBedsIdStream(userId, today).mapToDouble(id->bedService.getBed(id).getCost()).sum();
     }
+    @Override
+    public double getBedsTodayByAmount(Long userid){
+        LocalDate today = LocalDate.now();
+        return getBedsIdStream(userid,today).mapToDouble(id->bedService.readAll().size()).count();
+    }
 }

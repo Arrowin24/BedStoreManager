@@ -13,4 +13,6 @@ public interface CreatedSmallFurnitureService {
     List<String> getTodayCreatedSmallFurniture(Long userId);
 
     Double getTodaySmallFurnitureSalary(Long userId);
+
+    double getSmallFurnitureTodayByAmount(Long userid);
 }
