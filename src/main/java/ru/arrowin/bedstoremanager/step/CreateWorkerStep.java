@@ -126,8 +126,8 @@ public class CreateWorkerStep extends Step {
     }
 
     public void errorStep(Update update) {
-        setStep(StepName.FOUR);
         long id = getId(update);
+        getContainer().deleteStep(id);
         SendMessage message = new SendMessage();
         message.setChatId(id);
         message.setText(ERROR_TEXT);
