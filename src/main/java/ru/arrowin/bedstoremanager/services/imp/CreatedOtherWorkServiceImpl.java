@@ -23,7 +23,7 @@ public class CreatedOtherWorkServiceImpl implements CreatedOtherWorkService {
 
     @Override
     public void add(CreatedOtherWork otherWork) {
-       otherWorkRepository.save(otherWork);
+        otherWorkRepository.save(otherWork);
     }
 
     @Override
@@ -36,6 +36,7 @@ public class CreatedOtherWorkServiceImpl implements CreatedOtherWorkService {
         LocalDate today = LocalDate.now();
         return getOtherWorkIdStream(userId, today).map(id -> otherWorkService.getOtherWork(id).getName()).toList();
     }
+
     private Stream<Integer> getOtherWorkIdStream(Long userId, LocalDate date) {
         return otherWorkRepository.findOtherWorksBy(userId, date).stream().map(CreatedOtherWork::getOtherWorkId);
     }
@@ -43,18 +44,25 @@ public class CreatedOtherWorkServiceImpl implements CreatedOtherWorkService {
     @Override
     public Double getTodayOtherWorkSalary(Long userId) {
         LocalDate today = LocalDate.now();
-        return getOtherWorkIdStream(userId, today).mapToDouble(id->otherWorkService.getOtherWork(id).getCost()).sum();
-    }
-    @Override
-    public double getOtherWorkTodayByAmount(Long userid){
-        LocalDate today = LocalDate.now();
-        return getOtherWorkIdStream(userid,today).mapToDouble(id->otherWorkService.readAll().size()).count();
-    }
-    @Override
-    public double getCurrentMonthOtherWorkSalary(Long userId){
-        int month = LocalDate.now().getMonth().getValue();
-        return otherWorkRepository.findOtherWorkByMonth(userId,month).stream().mapToDouble(ow->otherWorkService.getOtherWork(ow.getOtherWorkId()).getCost()).sum();
+        return getOtherWorkIdStream(userId, today).mapToDouble(id -> otherWorkService.getOtherWork(id).getCost()).sum();
     }
 
+    @Override
+    public double getOtherWorkTodayByAmount(Long userid) {
+        LocalDate today = LocalDate.now();
+        return getOtherWorkIdStream(userid, today).mapToDouble(id -> otherWorkService.readAll().size()).count();
+    }
+
+    @Override
+    public double getCurrentMonthOtherWorkSalary(Long userId) {
+        int month = LocalDate.now().getMonth().getValue();
+        return otherWorkRepository.findOtherWorkByMonth(userId, month).stream().mapToDouble(ow -> otherWorkService.getOtherWork(ow.getOtherWorkId()).getCost()).sum();
+    }
+
+    @Override
+    public double getAmountOtherWorkForMaster() {
+        LocalDate today = LocalDate.now();
+        return (long) otherWorkRepository.findOtherWorkBy(today).size();
+    }
 
 }

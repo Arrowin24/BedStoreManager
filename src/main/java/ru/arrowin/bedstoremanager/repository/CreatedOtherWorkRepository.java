@@ -13,6 +13,8 @@ public interface CreatedOtherWorkRepository extends JpaRepository<CreatedOtherWo
     @Query(value = "SELECT * FROM created_other_work WHERE user_id=?1 and date=?2",
            nativeQuery = true)
     List<CreatedOtherWork> findOtherWorksBy(Long userId, LocalDate date);
+    @Query(value = "SELECT * FROM  created_other_work WHERE date=?1" ,nativeQuery = true)
+    List<CreatedOtherWork> findOtherWorkBy(LocalDate date);
     @Query(value = "SELECT * FROM created_other_work WHERE user_id=?1 AND ?2=(SELECT EXTRACT(MONTH FROM date ))", nativeQuery = true)
     List<CreatedOtherWork> findOtherWorkByMonth(Long userId, int monthNum);
 }

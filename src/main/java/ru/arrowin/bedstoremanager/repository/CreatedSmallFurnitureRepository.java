@@ -13,6 +13,8 @@ public interface CreatedSmallFurnitureRepository extends JpaRepository<CreatedSm
     @Query(value = "SELECT * FROM created_small_furniture WHERE user_id=?1 and date=?2",
            nativeQuery = true)
     List<CreatedSmallFurniture> findCreatedSmallFurnitureBy(Long userId, LocalDate date);
+    @Query(value = "SELECT * FROM  created_small_furniture  WHERE date=?1" ,nativeQuery = true)
+    List<CreatedSmallFurniture> findSmallFurnitureBy(LocalDate date);
 
     @Query(value = "SELECT * FROM created_small_furniture WHERE user_id=?1 AND ?2=(SELECT EXTRACT(MONTH FROM date ))", nativeQuery = true)
     List<CreatedSmallFurniture> findSmallFurnitureByMonth(Long userId, int monthNum);

@@ -58,4 +58,9 @@ public class CreatedBedsServiceImpl implements CreatedBedsService {
         int month = LocalDate.now().getMonth().getValue();
         return repository.findBedsByMonth(userId,month).stream().mapToDouble(cb->bedService.getBed(cb.getBedId()).getCost()).sum();
     }
+    @Override
+    public double getAmountBedsForMaster(){
+        LocalDate today = LocalDate.now();
+        return (long) repository.findBedsBy(today).size();
+    }
 }

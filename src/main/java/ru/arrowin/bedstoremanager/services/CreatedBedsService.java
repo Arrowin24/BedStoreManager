@@ -17,4 +17,6 @@ public interface CreatedBedsService {
 
 
     double getCurrentMonthBedSalary(Long userId);
+
+    double getAmountBedsForMaster();
 }
