@@ -23,4 +23,6 @@ public interface CreatedBedsService {
     double getCurrentMonthBedSalary(Long userId);
 
     double getAmountBedsForMaster();
+
+    List<String> getBedsNameAndId(Long userId);
 }

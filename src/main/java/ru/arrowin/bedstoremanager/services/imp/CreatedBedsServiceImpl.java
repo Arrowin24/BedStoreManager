@@ -1,5 +1,6 @@
 package ru.arrowin.bedstoremanager.services.imp;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import ru.arrowin.bedstoremanager.models.CreatedBed;
 import ru.arrowin.bedstoremanager.repository.CreatedBedsRepository;
@@ -13,6 +14,7 @@ import java.util.stream.Stream;
 @Service
 public class CreatedBedsServiceImpl implements CreatedBedsService {
 
+    @Value("${symbol.for.split}") private String SPLIT;
     private final CreatedBedsRepository repository;
     private final BedService bedService;
 
@@ -70,8 +72,9 @@ public class CreatedBedsServiceImpl implements CreatedBedsService {
         return (long) repository.findBedsBy(today).size();
     }
 
-//    public List<CreatedBed> getCreatedBeds(Long userId){
-//        LocalDate today = LocalDate.now();
-//        return repository.findBedsBy()
-//    }
+    @Override
+    public List<String> getBedsNameAndId(Long userId){
+       LocalDate today = LocalDate.now();
+       return repository.findBedsBy(userId, today).stream().map(cb->bedService.getBed(cb.getBedId()).getName()+"&&"+cb.getId()).toList();
+    }
 }

@@ -19,6 +19,7 @@ public class AdminKeyBoard implements KeyBoard {
         InlineKeyboardButton button4 = createButton("Вывести всех сотрудников", CommandName.GET_ALL_WORKERS);
         InlineKeyboardButton button5 = createButton("Добавить готовый заказ", CommandName.ADD_CREATED);
         InlineKeyboardButton button6 = createButton("Зарплата за месяц",CommandName.GET_SALARY_BY_CURRENT_MONTH);
+        InlineKeyboardButton button7 = createButton("Удалить изделие",CommandName.DELETE_FURNITURE);
 
 
         List<List<InlineKeyboardButton>> keyboard = new ArrayList<>();
@@ -28,6 +29,7 @@ public class AdminKeyBoard implements KeyBoard {
         keyboard.add(createButtonsLine(button4));
         keyboard.add(createButtonsLine(button5));
         keyboard.add(createButtonsLine(button6));
+        keyboard.add(createButtonsLine(button7));
         return new InlineKeyboardMarkup(keyboard);
     }
 }

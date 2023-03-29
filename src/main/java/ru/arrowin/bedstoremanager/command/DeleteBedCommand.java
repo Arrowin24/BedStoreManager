@@ -1,37 +1,36 @@
 package ru.arrowin.bedstoremanager.command;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
-import ru.arrowin.bedstoremanager.services.BedService;
-import ru.arrowin.bedstoremanager.services.OtherWorkService;
-import ru.arrowin.bedstoremanager.services.SendBotMessageService;
-import ru.arrowin.bedstoremanager.services.SmallFurnitureService;
+import ru.arrowin.bedstoremanager.keyboard.BackToMenuKeyBoard;
+import ru.arrowin.bedstoremanager.services.*;
 
 @Component
 public class DeleteBedCommand extends  Command{
-
-    private final String PREVIEW = "Выберете изделие  из списка";
+    @Value("${symbol.for.split}") private String SPLIT;
+    private final static String PREVIEW = "Вы успешно удалили кровать!";
 
     private final SendBotMessageService sendBotMessageService;
+    private final CreatedBedsService bedService;
 
-    private final BedService bedService;
-    private final SmallFurnitureService smallFurnitureService;
-    private final OtherWorkService otherWorkService;
 
-    public DeleteBedCommand(SendBotMessageService sendBotMessageService, BedService bedService, SmallFurnitureService smallFurnitureService, OtherWorkService otherWorkService) {
+    public DeleteBedCommand(SendBotMessageService sendBotMessageService, CreatedBedsService bedService) {
         super(CommandName.DELETE_BED);
         this.sendBotMessageService = sendBotMessageService;
         this.bedService = bedService;
-        this.smallFurnitureService = smallFurnitureService;
-        this.otherWorkService = otherWorkService;
     }
 
     @Override
     public void execute(Update update) {
-        Long userId = getId(update);
+        int bedId = Integer.parseInt(update.getCallbackQuery().getData().split(SPLIT)[1]);
+        bedService.delete(bedId);
         SendMessage message = new SendMessage();
         message.setChatId(getId(update));
+        message.setText(PREVIEW);
+        message.setReplyMarkup(new BackToMenuKeyBoard().getKeyBoard());
+        sendBotMessageService.sendMessage(message);
 
     }
 }
