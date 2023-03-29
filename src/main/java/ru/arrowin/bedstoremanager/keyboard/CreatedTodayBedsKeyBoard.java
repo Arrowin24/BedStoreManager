@@ -35,6 +35,8 @@ public class CreatedTodayBedsKeyBoard implements KeyBoard {
             button.setCallbackData(CommandName.DELETE_BED.getCommandName() + "&&" + id);
             keyboard.add(createButtonsLine(button));
         }
+        InlineKeyboardButton button1 = createButton("Вернуться в меню", CommandName.BACK_TO_MENU);
+        keyboard.add(createButtonsLine(button1));
         return new InlineKeyboardMarkup(keyboard);
     }
 }
