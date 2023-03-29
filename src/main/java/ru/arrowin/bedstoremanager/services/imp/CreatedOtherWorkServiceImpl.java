@@ -68,5 +68,10 @@ public class CreatedOtherWorkServiceImpl implements CreatedOtherWorkService {
         LocalDate today = LocalDate.now();
         return (long) otherWorkRepository.findOtherWorkBy(today).size();
     }
+    @Override
+    public List<String> getOtherWorkNameAndId(Long userId){
+        LocalDate today = LocalDate.now();
+        return otherWorkRepository.findOtherWorksBy(userId, today).stream().map(ow->otherWorkService.getOtherWork(ow.getOtherWorkId()).getName()+"&&"+ow.getId()).toList();
+    }
 
 }

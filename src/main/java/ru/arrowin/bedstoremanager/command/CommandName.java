@@ -25,8 +25,9 @@ public enum CommandName {
     ADD_CREATED_OTHER_WORK("/addCreatedOtherWork"), //Учет сделанной другой работы
     ADD_CREATED_SMALL_FURNITURE("/addCreatedSmallFurniture"), //Учет сделанной малой мебели
     GET_SALARY_BY_CURRENT_MONTH("/getSalaryByCurrentMonth"), // Вызов зарплаты зща месяц
-
     GET_CREATED_TODAY_BEDS("/getCreatedTodayBeds"), //Вызов клавиатуры со списком сделанных сегодня кроватей
+    GET_CREATED_TODAY_SMALL_FURNITURE("/getCreatedTodaySf"), //Вызов клавиатуры со списков сделанной сегодня малой мебели
+    GET_CREATED_TODAY_OTHER_WORK("/getCreatedTodayOw"), //Вызов клавиатуры со списков сделанной сегодня иной работы
     DELETE_BED("/deleteBed"),  //Команда удаления кровати из списка
     DELETE_SMALL_FURNITURE("/deleteSF"),  //Команда удаления малой мебели
     DELETE_OTHER_WORK("/deleteOW"), //Команда удаления иных работ

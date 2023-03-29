@@ -23,4 +23,6 @@ public interface CreatedOtherWorkService {
     double getCurrentMonthOtherWorkSalary(Long userId);
 
     double getAmountOtherWorkForMaster();
+
+    List<String> getOtherWorkNameAndId(Long userId);
 }

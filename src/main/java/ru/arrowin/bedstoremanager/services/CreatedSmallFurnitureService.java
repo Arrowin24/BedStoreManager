@@ -23,4 +23,8 @@ public interface CreatedSmallFurnitureService {
     double getCurrentMonthSmallFurnitureSalary(Long userId);
 
     double getAmountSmallFurnitureForMaster();
+
+
+
+    List<String> getSmallFurnitureNameAndId(Long userId);
 }

@@ -65,4 +65,9 @@ public class CreatedSmallFurnitureServiceImpl implements CreatedSmallFurnitureSe
         LocalDate today = LocalDate.now();
         return (long) furnitureRepository.findSmallFurnitureBy(today).size();
     }
+    @Override
+    public List<String> getSmallFurnitureNameAndId(Long userId){
+        LocalDate today = LocalDate.now();
+        return furnitureRepository.findCreatedSmallFurnitureBy(userId, today).stream().map(sf->smallFurnitureService.getSmallFurniture(sf.getSmallFurnitureId()).getName()+"&&"+sf.getId()).toList();
+    }
 }
