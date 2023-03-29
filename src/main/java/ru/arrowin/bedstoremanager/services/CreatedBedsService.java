@@ -7,6 +7,10 @@ import java.util.List;
 public interface CreatedBedsService {
     void add(CreatedBed bed);
 
+
+
+    void delete(Integer bedId);
+
     List<CreatedBed> readAll();
 
     List<String> getTodayCreatedBeds(Long userId);

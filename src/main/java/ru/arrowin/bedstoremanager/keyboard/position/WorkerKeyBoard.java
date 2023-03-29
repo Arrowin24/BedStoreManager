@@ -16,12 +16,14 @@ public class WorkerKeyBoard implements KeyBoard {
         InlineKeyboardButton button1 = createButton("Зарплата за сегодня", CommandName.GET_SALARY_TODAY);
         InlineKeyboardButton button4 = createButton("Добавить сделанную работу", CommandName.ADD_CREATED);
         InlineKeyboardButton button3 = createButton("Зарплата за текущий месяц",CommandName.GET_SALARY_BY_CURRENT_MONTH);
+        InlineKeyboardButton button5 = createButton("Удалить кровать из списка работ",CommandName.DELETE_BED);
 
         List<List<InlineKeyboardButton>> keyboard = new ArrayList<>();
         keyboard.add(createButtonsLine(button1));
         keyboard.add(createButtonsLine(button2));
         keyboard.add(createButtonsLine(button3));
         keyboard.add(createButtonsLine(button4));
+        keyboard.add(createButtonsLine(button5));
 
         return new InlineKeyboardMarkup(keyboard);
     }

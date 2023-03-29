@@ -8,6 +8,10 @@ import java.util.List;
 public interface CreatedOtherWorkService {
     void add(CreatedOtherWork otherWork);
 
+
+
+    void delete(Integer otherWorkId);
+
     List<CreatedOtherWork> readAll();
 
     List<String> getTodayCreatedOtherWork(Long userId);

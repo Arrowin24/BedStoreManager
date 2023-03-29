@@ -8,6 +8,10 @@ import java.util.List;
 public interface CreatedSmallFurnitureService {
     void add(CreatedSmallFurniture smallFurniture);
 
+
+
+    void delete(Integer smallFurnitureId);
+
     List<CreatedSmallFurniture> readAll();
 
     List<String> getTodayCreatedSmallFurniture(Long userId);

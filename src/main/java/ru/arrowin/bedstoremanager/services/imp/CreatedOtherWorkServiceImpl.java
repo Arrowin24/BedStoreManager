@@ -25,6 +25,10 @@ public class CreatedOtherWorkServiceImpl implements CreatedOtherWorkService {
     public void add(CreatedOtherWork otherWork) {
         otherWorkRepository.save(otherWork);
     }
+    @Override
+    public void delete(Integer otherWorkId){
+        otherWorkRepository.deleteById(otherWorkId);
+    }
 
     @Override
     public List<CreatedOtherWork> readAll() {

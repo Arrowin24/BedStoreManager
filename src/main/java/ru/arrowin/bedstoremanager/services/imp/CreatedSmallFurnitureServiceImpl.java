@@ -27,6 +27,11 @@ public class CreatedSmallFurnitureServiceImpl implements CreatedSmallFurnitureSe
     }
 
     @Override
+    public void delete(Integer smallFurnitureId){
+        furnitureRepository.deleteById(smallFurnitureId);
+    }
+
+    @Override
     public List<CreatedSmallFurniture> readAll() {
         return furnitureRepository.findAll();
     }

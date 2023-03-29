@@ -33,4 +33,6 @@ public class BedsKeyBoard implements KeyBoard {
         }
         return new InlineKeyboardMarkup(keyboard);
     }
+
+
 }

@@ -24,6 +24,12 @@ public class CreatedBedsServiceImpl implements CreatedBedsService {
     @Override
     public void add(CreatedBed bed) {
         repository.save(bed);
+
+    }
+
+    @Override
+    public void delete(Integer bedId){
+        repository.deleteById(bedId);
     }
 
     @Override
@@ -63,4 +69,9 @@ public class CreatedBedsServiceImpl implements CreatedBedsService {
         LocalDate today = LocalDate.now();
         return (long) repository.findBedsBy(today).size();
     }
+
+//    public List<CreatedBed> getCreatedBeds(Long userId){
+//        LocalDate today = LocalDate.now();
+//        return repository.findBedsBy()
+//    }
 }

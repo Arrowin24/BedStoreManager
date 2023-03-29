@@ -24,7 +24,10 @@ public enum CommandName {
     ADD_CREATED_BED("/addCreatedBed"), //Учет сделанной кровати
     ADD_CREATED_OTHER_WORK("/addCreatedOtherWork"), //Учет сделанной другой работы
     ADD_CREATED_SMALL_FURNITURE("/addCreatedSmallFurniture"), //Учет сделанной малой мебели
-    GET_SALARY_BY_CURRENT_MONTH("/getSalaryByCurrentMonth"); // Вызов зарплаты зща месяц
-
+    GET_SALARY_BY_CURRENT_MONTH("/getSalaryByCurrentMonth"), // Вызов зарплаты зща месяц
+    DELETE_BED("/deleteBed"),  //Команда удаления кровати из списка
+    DELETE_SMALL_FURNITURE("/deleteSF"),  //Команда удаления малой мебели
+    DELETE_OTHER_WORK("/deleteOW"), //Команда удаления иных работ
+    DELETE_FURNITURE("/delete"); //Комадна удаления
     private final String commandName;
 }
