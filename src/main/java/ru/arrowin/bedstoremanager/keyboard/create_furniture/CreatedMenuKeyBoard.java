@@ -7,7 +7,7 @@ import ru.arrowin.bedstoremanager.keyboard.KeyBoard;
 
 import java.util.ArrayList;
 import java.util.List;
-
+//Клавиатура для добавления изготовленных изделий
 public class CreatedMenuKeyBoard implements KeyBoard {
     @Override
     public InlineKeyboardMarkup getKeyBoard() {

@@ -6,7 +6,7 @@ import ru.arrowin.bedstoremanager.command.CommandName;
 
 import java.util.ArrayList;
 import java.util.List;
-
+//Стартовая клавиатура для начала использования приложением и регистрации в нем
 public class StartKeyBoard implements KeyBoard {
     @Override
     public InlineKeyboardMarkup getKeyBoard() {

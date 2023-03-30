@@ -6,7 +6,7 @@ import ru.arrowin.bedstoremanager.command.CommandName;
 
 import java.util.ArrayList;
 import java.util.List;
-
+//Клвиатура для выбора изделия , которое нужно удалить из списка сделнных работ
 public class DeleteKeyBoard implements KeyBoard{
     @Override
     public InlineKeyboardMarkup getKeyBoard() {
