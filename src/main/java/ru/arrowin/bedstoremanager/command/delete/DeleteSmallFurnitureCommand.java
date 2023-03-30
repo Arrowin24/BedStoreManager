@@ -9,14 +9,18 @@ import ru.arrowin.bedstoremanager.command.CommandName;
 import ru.arrowin.bedstoremanager.keyboard.BackToMenuKeyBoard;
 import ru.arrowin.bedstoremanager.services.CreatedSmallFurnitureService;
 import ru.arrowin.bedstoremanager.services.SendBotMessageService;
+
+/*
+ * Команда, удаляющая выбранную из перечесления изготовленную ранее малую мебель.
+ * Вызывается по нажатию на кнопку с названием изготовленной ранее малой мебели, которую хотят удалить.
+ * */
+
 @Component
 public class DeleteSmallFurnitureCommand extends Command {
     @Value("${symbol.for.split}")
     private String SPLIT;
     private final static String PREVIEW = "Вы успешно удалили малую мебель!";
-
     private final SendBotMessageService sendBotMessageService;
-
     private final CreatedSmallFurnitureService createdSmallFurnitureService;
 
     public DeleteSmallFurnitureCommand(SendBotMessageService sendBotMessageService, CreatedSmallFurnitureService createdSmallFurnitureService) {

@@ -6,6 +6,10 @@ import ru.arrowin.bedstoremanager.command.Command;
 import ru.arrowin.bedstoremanager.command.CommandName;
 import ru.arrowin.bedstoremanager.services.SendBotMessageService;
 
+
+/*
+* Команда по созданию и добавлению новой мебели в базу данных.
+* */
 @Component
 public class CreateNewFurnitureCommand extends Command {
     SendBotMessageService sendBotMessageService;

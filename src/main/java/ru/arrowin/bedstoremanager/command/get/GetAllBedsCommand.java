@@ -10,6 +10,12 @@ import ru.arrowin.bedstoremanager.keyboard.furniture.BedsKeyBoard;
 import ru.arrowin.bedstoremanager.services.BedService;
 import ru.arrowin.bedstoremanager.services.SendBotMessageService;
 
+
+/*
+* Команда для вывода в telegram клавиатуры со всем списком доступных кроватей на предприятии.
+* Необходима для дальнейшего сохранения изготовленной кровати.
+* Вызывается нажатием на кнопку "Добавить кровать".
+* */
 @Component
 public class GetAllBedsCommand extends Command {
     private final static String PREVIEW = "Выберите сделанную кровать:\n";

@@ -9,6 +9,11 @@ import ru.arrowin.bedstoremanager.keyboard.create_furniture.CreatedTodayOtherWor
 import ru.arrowin.bedstoremanager.services.CreatedOtherWorkService;
 import ru.arrowin.bedstoremanager.services.SendBotMessageService;
 
+/*
+ * Команда для вывода клавиатуры со списком выполненных сегодня иных работ пользователем телеграмма.
+ * Вызывается нажатием на кнопку "Удалить иную работу"
+ * */
+
 @Component
 public class GetCreatedTodayOtherWorkCommand extends Command {
     private final static String PREVIEW = "Выберите сделанную иную работу:\n";

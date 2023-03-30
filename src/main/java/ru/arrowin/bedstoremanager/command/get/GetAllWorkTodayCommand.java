@@ -10,6 +10,9 @@ import ru.arrowin.bedstoremanager.services.CreatedBedsService;
 import ru.arrowin.bedstoremanager.services.CreatedOtherWorkService;
 import ru.arrowin.bedstoremanager.services.CreatedSmallFurnitureService;
 import ru.arrowin.bedstoremanager.services.SendBotMessageService;
+/*
+* Команда для вывода в telegram информации о сделанной работе за сегодня. Показывает количество изделий по категориям.
+* */
 @Component
 public class GetAllWorkTodayCommand extends Command {
     private final static String GET_AlL_WORK_TODAY_MASSAGE = "Вывод сделанной работы за день";

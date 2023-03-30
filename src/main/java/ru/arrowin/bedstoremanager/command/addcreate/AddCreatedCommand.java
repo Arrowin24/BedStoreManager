@@ -8,6 +8,11 @@ import ru.arrowin.bedstoremanager.command.CommandName;
 import ru.arrowin.bedstoremanager.keyboard.create_furniture.CreatedMenuKeyBoard;
 import ru.arrowin.bedstoremanager.services.SendBotMessageService;
 
+/*
+* Команда для вывода в telegram клавиатуры с типами изготовленных изделий.
+* Вызывается при нажатии на кнопку "Добавить готовый заказ".
+* */
+
 @Component
 public class AddCreatedCommand extends Command {
 

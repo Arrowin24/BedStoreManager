@@ -11,6 +11,11 @@ import ru.arrowin.bedstoremanager.services.CreatedBedsService;
 import ru.arrowin.bedstoremanager.services.CreatedOtherWorkService;
 import ru.arrowin.bedstoremanager.services.CreatedSmallFurnitureService;
 import ru.arrowin.bedstoremanager.services.SendBotMessageService;
+
+/*
+* Команда выводящая в телеграмм сообщение с заработанными средствами за этот месяц.
+* Вывывается нажатием на клавиатуру "Зарплата за месяц"
+* */
 @Component
 public class GetSalaryByCurrentMonthCommand extends Command {
 

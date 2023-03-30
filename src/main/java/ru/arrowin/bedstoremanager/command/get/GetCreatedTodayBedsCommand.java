@@ -10,6 +10,11 @@ import ru.arrowin.bedstoremanager.keyboard.create_furniture.CreatedTodayBedsKeyB
 import ru.arrowin.bedstoremanager.services.CreatedBedsService;
 import ru.arrowin.bedstoremanager.services.SendBotMessageService;
 
+/*
+* Команда для вывода клавиатуры со списком изготовленных сегодня кроватей пользователем телеграмма.
+* Вызывается нажатием на кнопку "Удалить кровать"
+* */
+
 @Component
 public class GetCreatedTodayBedsCommand extends Command {
 

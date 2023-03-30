@@ -3,6 +3,8 @@ package ru.arrowin.bedstoremanager.command;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+
+//Enum для названий команд
 @Getter
 @AllArgsConstructor
 public enum CommandName {
@@ -32,5 +34,7 @@ public enum CommandName {
     DELETE_SMALL_FURNITURE("/deleteSF"),  //Команда удаления малой мебели
     DELETE_OTHER_WORK("/deleteOW"), //Команда удаления иных работ
     DELETE_FURNITURE("/delete"); //Комадна удаления
+
+    //Идентификатор команды
     private final String commandName;
 }

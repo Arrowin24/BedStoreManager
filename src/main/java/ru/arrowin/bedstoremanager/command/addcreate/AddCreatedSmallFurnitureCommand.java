@@ -13,6 +13,11 @@ import ru.arrowin.bedstoremanager.services.SendBotMessageService;
 
 import java.time.LocalDate;
 
+
+/* Команда, осуществляющая доблавление изготовленной малой мебели в базу данных и выводящая полученную прибыль по малой
+ * мебели за сегодня.
+ * Вызывается нажатием на кнопку с названием кровати из списка доступных кроватей.
+* */
 @Component
 public class AddCreatedSmallFurnitureCommand extends Command {
 

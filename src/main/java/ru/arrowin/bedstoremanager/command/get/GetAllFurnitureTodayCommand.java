@@ -11,6 +11,11 @@ import ru.arrowin.bedstoremanager.services.CreatedOtherWorkService;
 import ru.arrowin.bedstoremanager.services.CreatedSmallFurnitureService;
 import ru.arrowin.bedstoremanager.services.SendBotMessageService;
 
+/*
+ * Команда для вывода в telegram количества всей изготовленной за сегодня мебели по категориям.
+ * Вызывается нажатием на кнопку "Вывести список изготовленных за сегодня работ".
+ * */
+
 @Component
 public class GetAllFurnitureTodayCommand extends Command {
 

@@ -9,6 +9,11 @@ import ru.arrowin.bedstoremanager.keyboard.furniture.OtherWorkKeyBoard;
 import ru.arrowin.bedstoremanager.services.OtherWorkService;
 import ru.arrowin.bedstoremanager.services.SendBotMessageService;
 
+/*
+ * Команда для вывода в telegram клавиатуры со всем списком доступных иных работ на предприятии.
+ * Необходима для дальнейшего сохранения выполненых иных работ.
+ * Вызывается нажатием на кнопку "Добавить иную работу".
+ * */
 @Component
 public class GetAllOtherWorkCommand extends Command {
     private final static String PREVIEW = "Выберите иную работу:\n";

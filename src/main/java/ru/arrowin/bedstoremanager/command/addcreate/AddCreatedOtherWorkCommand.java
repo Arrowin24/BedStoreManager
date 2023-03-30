@@ -13,6 +13,12 @@ import ru.arrowin.bedstoremanager.services.SendBotMessageService;
 
 import java.time.LocalDate;
 
+
+/*
+*  Команда, осуществляющая доблавление сделанной иной работы в базу данных и выводящая полученную прибыль по иным работам
+* за сегодня.
+* Вызывается нажатием на кнопку с названием иной работы из списка доступных работ.
+* */
 @Component
 public class AddCreatedOtherWorkCommand extends Command {
     @Value("${symbol.for.split}") private String SPLIT;

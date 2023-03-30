@@ -10,6 +10,11 @@ import ru.arrowin.bedstoremanager.keyboard.BackToMenuKeyBoard;
 import ru.arrowin.bedstoremanager.services.CreatedOtherWorkService;
 import ru.arrowin.bedstoremanager.services.SendBotMessageService;
 
+/*
+ * Команда, удаляющая выбранную из перечесления выполненную ранее другую работу.
+ * Вызывается по нажатию на кнопку с названием выполненной ранее другой работой, которую хотят удалить.
+ * */
+
 @Component
 public class DeleteOtherWorkCommand  extends Command {
     @Value("${symbol.for.split}")

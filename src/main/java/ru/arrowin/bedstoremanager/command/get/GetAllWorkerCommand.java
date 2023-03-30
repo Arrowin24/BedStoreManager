@@ -12,7 +12,9 @@ import ru.arrowin.bedstoremanager.services.WorkerService;
 
 import java.util.stream.Collectors;
 
-
+/*
+ * Команда для вывода списка всех рарегистрированных в приложении пользователей
+ * */
 @Component
 public class GetAllWorkerCommand extends Command {
     private final static String PREVIEW = "Список всех рабочих:\n";

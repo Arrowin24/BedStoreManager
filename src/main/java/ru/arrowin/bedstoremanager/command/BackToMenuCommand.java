@@ -7,6 +7,10 @@ import ru.arrowin.bedstoremanager.keyboard.constructed.MainMenuKeyBoard;
 import ru.arrowin.bedstoremanager.services.SendBotMessageService;
 import ru.arrowin.bedstoremanager.services.WorkerService;
 
+/*
+* Команда для перехода в главное меню пользователя.
+* Вызывается кнопкой "Вернуться в меню"
+* */
 @Component
 public class BackToMenuCommand extends Command {
 

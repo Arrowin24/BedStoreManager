@@ -7,7 +7,10 @@ import ru.arrowin.bedstoremanager.command.Command;
 import ru.arrowin.bedstoremanager.command.CommandName;
 import ru.arrowin.bedstoremanager.keyboard.DeleteKeyBoard;
 import ru.arrowin.bedstoremanager.services.SendBotMessageService;
-
+/*
+* Команда, выводящая список типов изделий для дальнейшего удаления.
+* Вызывается командой "Удалить изделие"
+* */
 @Component
 public class DeleteCommand extends Command {
     private final static String TEXT = "Выберете что нужно удалить: ";
