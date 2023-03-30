@@ -4,7 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-
+//Класс по реализации обьектов сделанных кроватей на производстве
 
 @Entity
 @Table(name = "created_beds")

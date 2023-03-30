@@ -4,7 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.util.Objects;
-
+//Класс по реализации обьектов из базы данных с таблицей всех кроватей на предприятии
 @Entity
 @Table(name = "beds")
 @Getter
