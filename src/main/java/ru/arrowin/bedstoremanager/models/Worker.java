@@ -5,7 +5,7 @@ import org.hibernate.Hibernate;
 
 import javax.persistence.*;
 import java.util.Objects;
-
+//Класс по реализации обьектов класса сотрудник из базы данных
 @Entity
 @Table(name = "workers")
 @Getter

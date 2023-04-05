@@ -6,6 +6,7 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 import ru.arrowin.bedstoremanager.keyboard.StartKeyBoard;
 import ru.arrowin.bedstoremanager.services.SendBotMessageService;
 
+//Команда, которая выводит пользователя в меню с дальнейшей регистрацией, или изменением своих данных.
 @Component
 public class StartCommand extends Command {
 
@@ -13,8 +14,7 @@ public class StartCommand extends Command {
 
 
     private final static String START_MESSAGE = "Привет. Я телеграм бот, который поможет тебе следить за проделанной "
-            + "работой. " + "Поэтому если ты первый раз пользуешься мной, то нажми кнопку 'Зарегистрироваться'," + " "
-            + "если ты уже использовал меня, то нажми кнопку 'Авторизоавться'";
+            + "работой. " + "Поэтому если ты первый раз пользуешься мной, то нажми кнопку 'Зарегистрироваться'.";
 
     public StartCommand(SendBotMessageService sendBotMessageService) {
         super(CommandName.START);

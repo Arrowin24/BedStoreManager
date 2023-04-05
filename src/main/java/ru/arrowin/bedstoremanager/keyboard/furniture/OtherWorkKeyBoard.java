@@ -1,19 +1,20 @@
-package ru.arrowin.bedstoremanager.keyboard;
+package ru.arrowin.bedstoremanager.keyboard.furniture;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 import ru.arrowin.bedstoremanager.command.CommandName;
+import ru.arrowin.bedstoremanager.keyboard.KeyBoard;
 import ru.arrowin.bedstoremanager.models.answers.OtherWork;
 import ru.arrowin.bedstoremanager.models.answers.SmallFurniture;
 import ru.arrowin.bedstoremanager.services.OtherWorkService;
 
 import java.util.ArrayList;
 import java.util.List;
-
+//Клавитаруа для вывод всей иной работы на предпиятии
 @Component
-public class OtherWorkKeyBoard implements KeyBoard{
+public class OtherWorkKeyBoard implements KeyBoard {
     @Value(value = "${symbol.for.split}") private String SPLIT;
     private final OtherWorkService otherWorkService;
 

@@ -9,7 +9,7 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import ru.arrowin.bedstoremanager.controller.TelegramBotController;
 import ru.arrowin.bedstoremanager.services.SendBotMessageService;
-
+//Сервис для отправки сообщений в телеграмм бот
 @Service
 @Log4j
 public class SendBotMessageServiceImpl implements SendBotMessageService {
@@ -19,7 +19,7 @@ public class SendBotMessageServiceImpl implements SendBotMessageService {
     public SendBotMessageServiceImpl(@Lazy TelegramBotController telegramBot) {
         this.telegramBot = telegramBot;
     }
-
+    //Метод для отправки сообщений с проверкой исключений на стороне телеграмм бота
     @Override
     public void sendMessage(SendMessage message) {
         if (message == null) {

@@ -7,13 +7,14 @@ import ru.arrowin.bedstoremanager.keyboard.constructed.MainMenuKeyBoard;
 import ru.arrowin.bedstoremanager.services.SendBotMessageService;
 import ru.arrowin.bedstoremanager.services.WorkerService;
 
+//Команда для вывода всех доступных команд пользователю.
 @Component
 public class HelpCommand extends Command {
     private final SendBotMessageService sendBotMessageService;
     private final WorkerService workerService;
 
     private final static String HELP_MESSAGE =
-            "Я сейчас выведу клавиатуру со всеми возможными командами, которые " + "доступны тебе";
+            "Я сейчас выведу клавиатуру со всеми возможными командами, которые " + "доступны вам";
 
     public HelpCommand(SendBotMessageService sendBotMessageService, WorkerService workerService) {
         super(CommandName.HELP);

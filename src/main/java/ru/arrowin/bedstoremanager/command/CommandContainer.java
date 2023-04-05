@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+
+//Класс для хранения списка всех команд
 @Component
 public class CommandContainer {
 
@@ -23,6 +25,8 @@ public class CommandContainer {
         this.unknownCommand = unknownCommand;
     }
 
+    //Метод для получения нужной команды из списка по названию команды.
+    // В случае неопознанной команды возвращает unknownCommand
     public CommandBehavior retrieveCommand(String commandIdentifier) {
         return commandMap.getOrDefault(commandIdentifier, unknownCommand);
     }

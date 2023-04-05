@@ -7,7 +7,7 @@ import ru.arrowin.bedstoremanager.command.CommandName;
 import java.util.Arrays;
 import java.util.List;
 
-
+//Интерфейс для реализации методов клавиатуры
 public interface KeyBoard {
 
     InlineKeyboardMarkup getKeyBoard();

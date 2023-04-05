@@ -14,9 +14,16 @@ import ru.arrowin.bedstoremanager.step.StepsContainer;
 @Log4j
 public class TelegramBotController extends TelegramLongPollingBot {
 
+    //Знак для определения командных сообщений
     public static String COMMAND_PREFIX = "/";
+
+    //Разделительный знак для переноса данных между командами
     @Value("${symbol.for.split}") private String SPLIT;
+
+    //Названия бота
     @Value("${telegram.bot.name}") private String botName;
+
+    //Токен бота
     @Value("${telegram.bot.token}") private String botToken;
 
     private final CommandContainer commandContainer;
@@ -38,19 +45,25 @@ public class TelegramBotController extends TelegramLongPollingBot {
         return botToken;
     }
 
+
+    /*
+    * Метод telegramBot, который постоянно просматривает чат на новые сообщения от пользователя и определяет
+    * есть ли новое сообщение или передача данных.
+    * */
+
     @Override
     public void onUpdateReceived(Update update) {
         String message = "Какая-то ошибка";
-        if (update.hasMessage()) {
+        if (update.hasMessage()) {          // поиск наличия сообщений
             message = update.getMessage().getText();
         }
-        if (update.hasCallbackQuery()) {
+        if (update.hasCallbackQuery()) {        // если есть клавиатура или данные с нее
             message = update.getCallbackQuery().getData();
         }
-        if(stepsContainer.isContains(update)) {
+        if(stepsContainer.isContains(update)) {     // если это продолжение многостадийной команды
             stepsContainer.getStep(update).doStep(update);
         }
-        if (message.startsWith(COMMAND_PREFIX)) {
+        if (message.startsWith(COMMAND_PREFIX)) {   // если это обычная команда
             String command = message.split(SPLIT)[0];
             commandContainer.retrieveCommand(command).execute(update);
         }
