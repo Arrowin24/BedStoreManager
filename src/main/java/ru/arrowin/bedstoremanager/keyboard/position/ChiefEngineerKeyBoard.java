@@ -7,7 +7,9 @@ import ru.arrowin.bedstoremanager.keyboard.KeyBoard;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/***
+ * Главное меню с командами Главного инженера
+ */
 public class ChiefEngineerKeyBoard implements KeyBoard {
 
     @Override

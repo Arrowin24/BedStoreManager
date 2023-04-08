@@ -12,7 +12,10 @@ import ru.arrowin.bedstoremanager.services.OtherWorkService;
 
 import java.util.ArrayList;
 import java.util.List;
-//Клавитаруа для вывод всей иной работы на предпиятии
+
+/***
+ * Клавитаруа вывода всей иной работы на предпиятии для отметки "Сделано"
+ */
 @Component
 public class OtherWorkKeyBoard implements KeyBoard {
     @Value(value = "${symbol.for.split}") private String SPLIT;

@@ -12,7 +12,9 @@ import ru.arrowin.bedstoremanager.services.SmallFurnitureService;
 
 import java.util.ArrayList;
 import java.util.List;
-//Клавиатура для вывода всей малой мебели на предприятии
+/***
+ * Клавиатура вывода всей малой мебели на предприятии для отметки "Сделано"
+ */
 @Component
 public class SmallFurnitureKeyBoard implements KeyBoard {
     @Value(value = "${symbol.for.split}") private String SPLIT;

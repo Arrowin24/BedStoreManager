@@ -6,7 +6,9 @@ import ru.arrowin.bedstoremanager.command.CommandName;
 
 import java.util.ArrayList;
 import java.util.List;
-//Клавиатура для вывода всех сотрудников в ввиде списка
+/***
+ * Клавиатура для вывода всех сотрудников в ввиде списка
+ */
 public class GetAllWorkersKeyBoard implements KeyBoard{
     @Override
     public InlineKeyboardMarkup getKeyBoard() {

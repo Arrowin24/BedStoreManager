@@ -8,7 +8,9 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 
-//Класс для хранения списка всех команд
+/**
+ * Класс для хранения списка всех команд
+ */
 @Component
 public class CommandContainer {
 

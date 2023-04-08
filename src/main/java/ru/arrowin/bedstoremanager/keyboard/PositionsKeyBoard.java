@@ -6,7 +6,9 @@ import ru.arrowin.bedstoremanager.models.Position;
 
 import java.util.ArrayList;
 import java.util.List;
-//Клавиатура для вывода позиции сотрудника предприятия
+/***
+ * Клавиатура для вывода позиции сотрудника предприятия
+ */
 public class PositionsKeyBoard implements KeyBoard {
     @Override
     public InlineKeyboardMarkup getKeyBoard() {

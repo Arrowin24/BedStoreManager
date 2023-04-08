@@ -6,7 +6,9 @@ import ru.arrowin.bedstoremanager.models.CreatedBed;
 
 import java.time.LocalDate;
 import java.util.List;
-//Репозиторий со всеми сделанными кроватями находящимися в базе данных
+/***
+ * Репозиторий со всеми сделанными кроватями находящимися в базе данных
+ */
 public interface CreatedBedsRepository extends JpaRepository<CreatedBed, Integer> {
 
     @Query(value = "SELECT * FROM created_beds WHERE user_id=?1 and date=?2",

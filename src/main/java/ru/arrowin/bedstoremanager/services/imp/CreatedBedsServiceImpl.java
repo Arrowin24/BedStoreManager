@@ -10,7 +10,10 @@ import ru.arrowin.bedstoremanager.services.CreatedBedsService;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Stream;
-//Сервис по работе со сделанными кроватями
+//
+/***
+ * Сервис по работе с изготовленными кроватями
+ */
 @Service
 public class CreatedBedsServiceImpl implements CreatedBedsService {
 
@@ -22,23 +25,41 @@ public class CreatedBedsServiceImpl implements CreatedBedsService {
         this.repository = repository;
         this.bedService = bedService;
     }
-    //Добавление сделанной кровати в базу данных сделанных кроватей
+
+
+    /***
+     * Добавление сделанной кровати в базу данных сделанных кроватей
+     * @param bed изготовленная кровать
+     */
     @Override
     public void add(CreatedBed bed) {
         repository.save(bed);
 
     }
-    //Метод удаления сделанной кровати из базы данных сделанных кроватей
+
+    /***
+     * Метод удаления сделанной кровати из базы данных сделанных кроватей
+     * @param bedId id изготовленной ранее кровати
+     */
     @Override
     public void delete(Integer bedId){
         repository.deleteById(bedId);
     }
-    //Прочитать все сделанные кровати из базы данных со сделанными кроватями
+
+    /***
+     * Прочитать все сделанные кровати из базы данных со сделанными кроватями
+     * @return список всех изготовленных когда-либо кроватей
+     */
     @Override
     public List<CreatedBed> readAll() {
         return repository.findAll();
     }
-    //Метод вывода всех сделанных кроватей определенным пользователем
+
+    /***
+     * Метод вывода всех сделанных кроватей определенным пользователем
+     * @param userId id пользователя, определяется телеграммом
+     * @return список всех изготовленных сегодня кроватей
+     */
     @Override
     public List<String> getTodayCreatedBeds(Long userId) {
         LocalDate today = LocalDate.now();
@@ -46,6 +67,7 @@ public class CreatedBedsServiceImpl implements CreatedBedsService {
 
     }
     //Метод получения стрима айди кроватей для определенного пользолвателя в конкретный день
+
     private Stream<Integer> getBedsIdStream(Long userId, LocalDate date) {
         return repository.findBedsBy(userId, date).stream().map(CreatedBed::getBedId);
     }

@@ -11,7 +11,10 @@ import ru.arrowin.bedstoremanager.services.BedService;
 
 import java.util.ArrayList;
 import java.util.List;
-//Клавиатура для вывода всех кроватей предприятия
+
+/***
+ * Клавиатура вывода всех кроватей предприятия для отметки "Сделано"
+ */
 @Component
 public class BedsKeyBoard implements KeyBoard {
 

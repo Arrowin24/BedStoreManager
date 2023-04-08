@@ -6,7 +6,9 @@ import ru.arrowin.bedstoremanager.command.CommandName;
 
 import java.util.ArrayList;
 import java.util.List;
-//Клавиатура для реализации кнопки "Вернуться в меню"
+/***
+ * Клавиатура для реализации кнопки "Вернуться в меню"
+ */
 public class BackToMenuKeyBoard implements KeyBoard {
 
     @Override

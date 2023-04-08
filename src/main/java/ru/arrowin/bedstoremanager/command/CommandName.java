@@ -4,7 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 
-//Enum для названий команд
+
+/***
+ * Enum для названий команд
+ */
 @Getter
 @AllArgsConstructor
 public enum CommandName {

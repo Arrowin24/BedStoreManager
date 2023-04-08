@@ -9,7 +9,11 @@ import ru.arrowin.bedstoremanager.keyboard.KeyBoard;
 import ru.arrowin.bedstoremanager.services.CreatedBedsService;
 import java.util.ArrayList;
 import java.util.List;
-//Клавитура для вывода сделанных кроватей в виде списка
+
+
+/***
+ * Клавитура вывода сделанных кроватей в виде списка для дальнейшего удаления
+ */
 @Component
 public class CreatedTodayBedsKeyBoard implements KeyBoard {
 

@@ -6,7 +6,7 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 import ru.arrowin.bedstoremanager.services.SendBotMessageService;
 
 
-/*
+/***
 * Команда, выводящая доступные пользователю команды.
 * Вызывается при вводе неизвестной команды пользователем.
 * */

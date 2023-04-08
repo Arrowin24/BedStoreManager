@@ -10,7 +10,10 @@ import ru.arrowin.bedstoremanager.services.CreatedOtherWorkService;
 
 import java.util.ArrayList;
 import java.util.List;
-//Клавитару для вывода иной работы ввиде списка
+
+/***
+ * Клавитару вывода иной работы ввиде списка для дальнейшего удаления
+ */
 @Component
 public class CreatedTodayOtherWorkKeyBoard implements KeyBoard {
     @Value(value = "${symbol.for.split}") private String SPLIT;

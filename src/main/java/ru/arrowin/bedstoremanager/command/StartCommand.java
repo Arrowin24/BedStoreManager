@@ -6,7 +6,9 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 import ru.arrowin.bedstoremanager.keyboard.StartKeyBoard;
 import ru.arrowin.bedstoremanager.services.SendBotMessageService;
 
-//Команда, которая выводит пользователя в меню с дальнейшей регистрацией, или изменением своих данных.
+/***
+ * Команда, которая выводит пользователя в меню с дальнейшей регистрацией, или изменением своих данных.
+ */
 @Component
 public class StartCommand extends Command {
 

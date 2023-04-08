@@ -7,7 +7,10 @@ import ru.arrowin.bedstoremanager.keyboard.position.ChiefEngineerKeyBoard;
 import ru.arrowin.bedstoremanager.keyboard.position.WorkerKeyBoard;
 import ru.arrowin.bedstoremanager.models.Worker;
 import ru.arrowin.bedstoremanager.services.WorkerService;
-//Клаиатура по созданию должности
+
+/***
+ * Клаиатура главного меню с учетом должности работника
+ */
 public class MainMenuKeyBoard {
 
     private final WorkerService workerService;

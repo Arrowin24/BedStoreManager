@@ -10,7 +10,7 @@ import ru.arrowin.bedstoremanager.keyboard.BackToMenuKeyBoard;
 import ru.arrowin.bedstoremanager.services.CreatedSmallFurnitureService;
 import ru.arrowin.bedstoremanager.services.SendBotMessageService;
 
-/*
+/**
  * Команда, удаляющая выбранную из перечесления изготовленную ранее малую мебель.
  * Вызывается по нажатию на кнопку с названием изготовленной ранее малой мебели, которую хотят удалить.
  * */

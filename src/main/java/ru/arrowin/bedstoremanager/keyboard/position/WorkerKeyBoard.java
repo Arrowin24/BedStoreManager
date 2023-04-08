@@ -7,7 +7,9 @@ import ru.arrowin.bedstoremanager.keyboard.KeyBoard;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/***
+ * Главное меню с командами Рабочего
+ */
 public class WorkerKeyBoard implements KeyBoard {
     @Override
     public InlineKeyboardMarkup getKeyBoard() {

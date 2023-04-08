@@ -7,7 +7,10 @@ import ru.arrowin.bedstoremanager.keyboard.constructed.MainMenuKeyBoard;
 import ru.arrowin.bedstoremanager.services.SendBotMessageService;
 import ru.arrowin.bedstoremanager.services.WorkerService;
 
-//Команда для вывода всех доступных команд пользователю.
+
+/***
+ * Команда для вывода всех доступных команд пользователю.
+ */
 @Component
 public class HelpCommand extends Command {
     private final SendBotMessageService sendBotMessageService;

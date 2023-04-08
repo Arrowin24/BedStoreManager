@@ -9,7 +9,7 @@ import ru.arrowin.bedstoremanager.command.CommandName;
 import ru.arrowin.bedstoremanager.keyboard.BackToMenuKeyBoard;
 import ru.arrowin.bedstoremanager.services.*;
 
-/*
+/**
 * Команда, удаляющая выбранную из перечесления изготовленную ранее кровать.
 * Вызывается по нажатию на кнопку с названием изготовленной ранее кровати, которую хотят удалить.
 * */

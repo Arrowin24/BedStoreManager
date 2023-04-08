@@ -7,7 +7,10 @@ import ru.arrowin.bedstoremanager.models.answers.CreatedSmallFurniture;
 
 import java.time.LocalDate;
 import java.util.List;
-//Репозиторий со всей сделанной малой мебелью находящейся в базе данных
+
+/***
+ * Репозиторий со всей сделанной малой мебелью находящейся в базе данных
+ */
 public interface CreatedSmallFurnitureRepository extends JpaRepository<CreatedSmallFurniture, Integer> {
 
     @Query(value = "SELECT * FROM created_small_furniture WHERE user_id=?1 and date=?2",

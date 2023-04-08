@@ -8,6 +8,9 @@ import ru.arrowin.bedstoremanager.keyboard.KeyBoard;
 import java.util.ArrayList;
 import java.util.List;
 
+/***
+ * Главное меню с командами Администратора
+ */
 public class AdminKeyBoard implements KeyBoard {
 
     @Override

@@ -1,7 +1,7 @@
 package ru.arrowin.bedstoremanager.command;
 
 
-/*
+/**
 * Абстрактный класс для дальнейшей реализации интерфейся CommandBehavior
 * */
 public abstract class Command implements CommandBehavior {

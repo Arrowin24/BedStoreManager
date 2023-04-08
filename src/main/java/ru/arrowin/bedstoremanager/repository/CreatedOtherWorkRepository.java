@@ -7,7 +7,9 @@ import ru.arrowin.bedstoremanager.models.answers.CreatedOtherWork;
 
 import java.time.LocalDate;
 import java.util.List;
-//Репозиторий со всей сделанной иной работой находящейся в базе данных
+/***
+ * Репозиторий со всей сделанной иной работой находящейся в базе данных
+ */
 public interface CreatedOtherWorkRepository extends JpaRepository<CreatedOtherWork, Integer> {
 
     @Query(value = "SELECT * FROM created_other_work WHERE user_id=?1 and date=?2",

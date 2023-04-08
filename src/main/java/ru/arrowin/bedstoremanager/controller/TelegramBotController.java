@@ -14,22 +14,35 @@ import ru.arrowin.bedstoremanager.step.StepsContainer;
 @Log4j
 public class TelegramBotController extends TelegramLongPollingBot {
 
-    //Знак для определения командных сообщений
+
+    /***
+     * Знак для определения командных сообщений
+     */
     public static String COMMAND_PREFIX = "/";
 
-    //Разделительный знак для переноса данных между командами
+    /***
+     * Разделительный знак для переноса данных между командами
+     */
     @Value("${symbol.for.split}") private String SPLIT;
 
-    //Названия бота
+    /***
+     * Названия бота
+     */
     @Value("${telegram.bot.name}") private String botName;
 
-    //Токен бота
+    /***
+     * Токен бота
+     */
     @Value("${telegram.bot.token}") private String botToken;
 
     private final CommandContainer commandContainer;
     private final StepsContainer stepsContainer;
 
-
+    /***
+     *
+     * @param commandContainer контейнер для команд
+     * @param stepsContainer контейнер для сложных многошаговых команд
+     */
     public TelegramBotController(CommandContainer commandContainer, StepsContainer stepsContainer) {
         this.commandContainer = commandContainer;
         this.stepsContainer = stepsContainer;
@@ -45,12 +58,11 @@ public class TelegramBotController extends TelegramLongPollingBot {
         return botToken;
     }
 
-
-    /*
-    * Метод telegramBot, который постоянно просматривает чат на новые сообщения от пользователя и определяет
-    * есть ли новое сообщение или передача данных.
-    * */
-
+    /***
+     * Метод telegramBot, который постоянно просматривает чат на новые сообщения от пользователя и определяет
+     * есть ли новое сообщение или передача данных.
+     * @param update данные пришедшие от пользователя на сервис
+     */
     @Override
     public void onUpdateReceived(Update update) {
         String message = "Какая-то ошибка";
