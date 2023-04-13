@@ -30,7 +30,7 @@ public class Worker {
     }
 
     public String toText() {
-        return "Сотрудник с ID: " + id + "\n Имя: " + name + "\nДолжность: " + position + "\n";
+        return "Сотрудник :" + name + "\nДолжность: " + position + "\n";
     }
 
     @Override
